@@ -64,3 +64,7 @@ start index.html     # Windows  (macOS: open index.html, Linux: xdg-open index.h
 
 - Die Farbwerte der Paletten sind Annäherungen an die echten Perlenfarben. Bildschirm und Drucker können leicht abweichen.
 - Hama, Perler, Artkal, IKEA Pyssla und Nabbi sind Marken ihrer jeweiligen Inhaber. Ironprint ist ein unabhängiges Projekt und steht in keiner Verbindung zu diesen Herstellern.
+
+## Lizenz
+
+Veröffentlicht unter der [MIT-Lizenz](LICENSE).
