@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ironprint – Bügelperlen-Vorlagen</title>
+<style>
+:root{
+  --bg:#f5f4f0; --panel:#ffffff; --text:#1d1d1f; --muted:#6b6b70; --line:#e2e0da;
+  --accent:#d6457a; --accent-2:#f6d9e4; --canvas-bg:#ffffff;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17171a; --panel:#222226; --text:#ececf0; --muted:#9a9aa2; --line:#34343a;
+    --accent:#ff6fa3; --accent-2:#4a2434; --canvas-bg:#2a2a2f;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
+header h1{font-size:18px;margin:0;font-weight:650}
+header .sub{color:var(--muted);font-size:13px}
+.app{display:grid;grid-template-columns:330px 1fr 300px;gap:0;height:calc(100% - 55px)}
+aside,.side{background:var(--panel);overflow:auto;padding:14px 16px}
+aside{border-right:1px solid var(--line)}
+.side{border-left:1px solid var(--line)}
+main{overflow:hidden;display:flex;flex-direction:column;min-width:0}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:18px 0 8px;font-weight:650}
+h2:first-child{margin-top:0}
+label{display:block;margin:8px 0 3px;font-size:13px}
+label.inline{display:flex;align-items:center;gap:8px;margin:6px 0}
+select,input[type=number],input[type=text]{width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--text);font:inherit}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input[type=checkbox]{accent-color:var(--accent)}
+.row{display:flex;gap:8px}
+.row>*{flex:1;min-width:0}
+.hint{color:var(--muted);font-size:12px;margin-top:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:7px 12px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--text);cursor:pointer;font:inherit}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.active{background:var(--accent-2);border-color:var(--accent)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.drop{border:2px dashed var(--line);border-radius:10px;padding:18px;text-align:center;cursor:pointer;color:var(--muted)}
+.drop.over{border-color:var(--accent);background:var(--accent-2)}
+.drop img{max-width:100%;max-height:120px;display:block;margin:0 auto 6px;border-radius:4px}
+.drop img.px{image-rendering:pixelated;height:96px;width:auto}
+/* Motiv-Galerie */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:20;padding:16px}
+.modal[hidden]{display:none}
+.modal-box{background:var(--panel);color:var(--text);border-radius:12px;width:min(960px,100%);max-height:100%;display:flex;flex-direction:column;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.modal-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.modal-head b{font-size:16px;white-space:nowrap}
+.modal-head input{max-width:260px;margin-left:auto}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--line)}
+.tabs .btn{padding:4px 10px;font-size:13px}
+.modal-body{overflow:auto;padding:14px 16px}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+.mcard{border:1px solid var(--line);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;background:var(--bg);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--text);font:inherit}
+.mcard:hover{border-color:var(--accent)}
+.mcard canvas{image-rendering:pixelated;width:72px;height:72px;object-fit:contain;background:#fbfbf9;border-radius:6px;padding:4px;box-sizing:content-box}
+.mcard span{font-size:12px;line-height:1.2}
+.mcat{grid-column:1/-1;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:6px}
+.textform[hidden]{display:none}
+.textform{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-bottom:14px}
+.textform textarea{width:100%;min-height:70px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--text);font:inherit;text-transform:uppercase}
+.textprev{display:flex;align-items:center;justify-content:center;background:#fbfbf9;border-radius:8px;min-height:140px;padding:8px;overflow:auto}
+.textprev canvas{image-rendering:pixelated;max-width:100%}
+@media (max-width:640px){.textform{grid-template-columns:1fr}.modal-head input{max-width:none}}
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--panel)}
+.toolbar .sep{width:1px;height:22px;background:var(--line);margin:0 4px}
+.toolbar .info{margin-left:auto;color:var(--muted);font-size:13px}
+.stage{flex:1;overflow:auto;display:flex;align-items:flex-start;justify-content:center;padding:18px}
+#pattern{background:var(--canvas-bg);box-shadow:0 1px 6px rgba(0,0,0,.12);image-rendering:pixelated;cursor:crosshair}
+.empty{margin:auto;text-align:center;color:var(--muted);max-width:340px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
+.stat{background:var(--bg);border-radius:7px;padding:7px 9px}
+.stat b{display:block;font-size:16px}
+.stat span{font-size:11px;color:var(--muted)}
+.legend{list-style:none;margin:0;padding:0}
+.legend li{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:6px;cursor:pointer}
+.legend li:hover{background:var(--bg)}
+.legend li.sel{background:var(--accent-2)}
+.sw{width:22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.25);flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.legend .nm{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.legend .ct{font-variant-numeric:tabular-nums;color:var(--muted)}
+.legend .rm{border:0;background:none;color:var(--muted);cursor:pointer;font-size:13px;padding:2px 4px;border-radius:4px;opacity:.55}
+.legend li:hover .rm{opacity:1}
+.legend .rm:hover{color:#fff;background:var(--accent)}
+.removed{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 8px}
+.btn.chip{padding:3px 8px;font-size:12px;gap:5px}
+.palgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(26px,1fr));gap:4px;margin-top:6px}
+.palgrid .pc{width:26px;height:26px;border-radius:50%;border:2px solid transparent;cursor:pointer;position:relative}
+.palgrid .pc.off{opacity:.2}
+.palgrid .pc.off::after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;background:var(--text);transform:rotate(45deg)}
+.small-btns{display:flex;gap:6px;margin-top:6px}
+.small-btns .btn{padding:4px 8px;font-size:12px}
+#printArea{display:none}
+@media (max-width:1000px){
+  .app{grid-template-columns:1fr;height:auto}
+  aside,.side{border:0;border-bottom:1px solid var(--line)}
+  main{min-height:70vh}
+}
+@media print{
+  body{background:#fff;color:#000}
+  header,.app,.modal,#notice{display:none!important}
+  #printArea{display:block}
+  .pp table{border-collapse:collapse;font:10pt system-ui}
+  .pp td{padding:2px 8px;border-bottom:1px solid #ddd}
+}
+</style>
+<style id="pageStyle"></style>
+</head>
+<body>
+<header>
+  <h1>Ironprint</h1>
+  <span class="sub">Bild hochladen → Steckplatte wählen → Vorlage drucken</span>
+</header>
+
+<div class="app">
+  <!-- ============ Einstellungen ============ -->
+  <aside>
+    <h2>1. Bild</h2>
+    <div class="drop" id="drop">
+      <div id="dropInner">Bild hierher ziehen oder <u>klicken</u><br><small>PNG, JPG, GIF, WebP</small></div>
+      <input type="file" id="file" accept="image/*" hidden>
+    </div>
+    <div class="small-btns"><button class="btn primary" id="openMotifs" style="flex:1">★ Fertiges Motiv auswählen</button></div>
+    <div id="motifScaleWrap" style="display:none">
+      <label>Motivgröße</label>
+      <select id="motifScale">
+        <option value="auto">Automatisch (so groß wie möglich)</option>
+        <option value="1">1 × (1 Pixel = 1 Perle)</option>
+        <option value="2">2 ×</option>
+        <option value="3">3 ×</option>
+        <option value="4">4 ×</option>
+      </select>
+    </div>
+
+    <h2>2. Perlen &amp; Steckplatte</h2>
+    <label>Perlensystem</label>
+    <select id="system"></select>
+    <div id="pitchWrap" style="display:none">
+      <label>Abstand Perle zu Perle (mm)</label>
+      <input type="number" id="pitch" min="1" max="20" step="0.1" value="5">
+    </div>
+    <label>Steckplatten-Vorlage</label>
+    <select id="board"></select>
+    <div class="row">
+      <div><label>Stifte Breite</label><input type="number" id="bw" min="5" max="200"></div>
+      <div><label>Stifte Höhe</label><input type="number" id="bh" min="5" max="200"></div>
+    </div>
+    <div class="row">
+      <div><label>Platten nebeneinander</label><input type="number" id="nx" min="1" max="20" value="1"></div>
+      <div><label>Platten untereinander</label><input type="number" id="ny" min="1" max="20" value="1"></div>
+    </div>
+    <div class="small-btns"><button class="btn" id="autoBoards" title="Plattenanzahl so wählen, dass das Seitenverhältnis des Bildes passt">Platten automatisch ans Bild anpassen</button></div>
+    <label>Bild einpassen</label>
+    <select id="fit">
+      <option value="contain">Einpassen (ganzes Bild, Rand bleibt leer)</option>
+      <option value="cover">Füllen (Bild wird beschnitten)</option>
+      <option value="stretch">Strecken (verzerrt)</option>
+    </select>
+
+    <h2>3. Farben</h2>
+    <label>Farbpalette</label>
+    <select id="palette"></select>
+    <label>Max. Anzahl Farben: <b id="maxColorsV"></b></label>
+    <input type="range" id="maxColors" min="2" max="60" value="60">
+    <label>Farbabgleich</label>
+    <select id="dither">
+      <option value="none">Nächste Farbe (klare Flächen)</option>
+      <option value="fs">Dithering Floyd-Steinberg (Fotos)</option>
+      <option value="fs50">Dithering abgeschwächt</option>
+    </select>
+    <label class="inline"><input type="checkbox" id="removeBg"> Hintergrund entfernen (Farbe der Bildecken)</label>
+    <div id="bgTolWrap" style="display:none">
+      <label>Toleranz: <b id="bgTolV"></b></label>
+      <input type="range" id="bgTol" min="2" max="80" value="20">
+    </div>
+    <label>Helligkeit: <b id="brightV"></b></label>
+    <input type="range" id="bright" min="-100" max="100" value="0">
+    <label>Kontrast: <b id="contrastV"></b></label>
+    <input type="range" id="contrast" min="-100" max="100" value="0">
+    <label>Sättigung: <b id="satV"></b></label>
+    <input type="range" id="sat" min="-100" max="100" value="0">
+    <div class="small-btns"><button class="btn" id="resetAdj">Regler zurücksetzen</button></div>
+
+    <h2>Verfügbare Perlenfarben</h2>
+    <div class="hint">Klicken schaltet eine Farbe aus/an (z.&nbsp;B. wenn du sie nicht hast) – sie wird dann durch eine ähnliche Farbe ersetzt. Um eine Farbe ganz wegzulassen (z.&nbsp;B. weißen Hintergrund), nutze ✕ in der Farbliste rechts.</div>
+    <div class="small-btns"><button class="btn" id="allOn">Alle an</button><button class="btn" id="allOff">Alle aus</button></div>
+    <div class="palgrid" id="palgrid"></div>
+  </aside>
+
+  <!-- ============ Vorschau ============ -->
+  <main>
+    <div class="toolbar">
+      <select id="view" style="width:auto">
+        <option value="beads">Perlen-Ansicht</option>
+        <option value="squares">Kästchen</option>
+        <option value="symbols">Kästchen + Symbole</option>
+        <option value="ironed">Gebügelt</option>
+      </select>
+      <label class="inline" style="margin:0"><input type="checkbox" id="showGrid" checked> Raster</label>
+      <label class="inline" style="margin:0"><input type="checkbox" id="showBoards" checked> Plattengrenzen</label>
+      <label class="inline" style="margin:0"><input type="checkbox" id="showOrig"> Original</label>
+      <span class="sep"></span>
+      <button class="btn" id="zoomOut" title="Verkleinern">−</button>
+      <button class="btn" id="zoomFit" title="Einpassen">⤢</button>
+      <button class="btn" id="zoomIn" title="Vergrößern">+</button>
+      <span class="sep"></span>
+      <button class="btn active" id="toolNone" title="Nur ansehen">Ansehen</button>
+      <button class="btn" id="toolPaint" title="Mit gewählter Farbe malen (Farbe rechts in der Liste wählen)">Malen</button>
+      <button class="btn" id="toolErase" title="Perle entfernen">Radieren</button>
+      <button class="btn" id="toolRemove" title="Auf eine Perle klicken: diese Farbe wird überall entfernt (z. B. weißer Hintergrund)">Farbe entfernen</button>
+      <button class="btn" id="undo" title="Rückgängig (Strg+Z)" disabled>↶</button>
+      <span class="info" id="info"></span>
+    </div>
+    <div class="stage" id="stage">
+      <div class="empty" id="empty">
+        <p style="font-size:42px;margin:0">◍◍◍</p>
+        <p>Lade links ein Bild hoch. Die Vorlage erscheint hier und aktualisiert sich bei jeder Einstellung sofort.</p>
+      </div>
+      <canvas id="pattern" style="display:none"></canvas>
+    </div>
+  </main>
+
+  <!-- ============ Ergebnis ============ -->
+  <div class="side">
+    <h2>Übersicht</h2>
+    <div class="stats">
+      <div class="stat"><b id="sBeads">–</b><span>Perlen gesamt</span></div>
+      <div class="stat"><b id="sColors">–</b><span>Farben</span></div>
+      <div class="stat"><b id="sSize">–</b><span>Fertige Größe</span></div>
+      <div class="stat"><b id="sBoards">–</b><span>Steckplatten</span></div>
+    </div>
+    <div class="small-btns" style="flex-wrap:wrap">
+      <button class="btn primary" id="print" disabled>Drucken / PDF</button>
+      <button class="btn" id="png" disabled>PNG speichern</button>
+      <button class="btn" id="csv" disabled>Einkaufsliste (CSV)</button>
+    </div>
+    <h2>Druck</h2>
+    <div class="row">
+      <div><label>Papier</label><select id="paper">
+        <option value="A4">A4</option><option value="A3">A3</option>
+        <option value="A5">A5</option><option value="Letter">US Letter</option><option value="Legal">US Legal</option>
+      </select></div>
+      <div><label>Ausrichtung</label><select id="orient">
+        <option value="auto">Automatisch</option><option value="portrait">Hochformat</option><option value="landscape">Querformat</option>
+      </select></div>
+    </div>
+    <label>Maßstab</label>
+    <select id="printScale">
+      <option value="real">Originalgröße 1:1 (zum Unterlegen unter die Steckplatte)</option>
+      <option value="fit">Seite füllen (groß &amp; gut lesbar)</option>
+    </select>
+    <div class="row">
+      <div><label>Seitenrand (mm)</label><input type="number" id="pmargin" value="10" min="3" max="30"></div>
+      <div style="display:flex;align-items:flex-end"><label class="inline"><input type="checkbox" id="pOverview" checked> Übersichtsseite</label></div>
+    </div>
+    <div class="hint" id="printInfo"></div>
+    <div class="hint">Wichtig: Im Druckdialog <b>„Tatsächliche Größe“ bzw. Skalierung 100 %</b> wählen, nicht „An Seite anpassen“. Auf jeder 1:1-Seite ist ein 5-cm-Kontrollbalken zum Nachmessen.</div>
+    <h2>Farbliste</h2>
+    <div class="hint">Farbe anklicken → wird hervorgehoben und als Malfarbe gewählt. ✕ entfernt die Farbe komplett (die Felder bleiben leer).</div>
+    <ul class="legend" id="legend"></ul>
+  </div>
+</div>
+
+<div id="printArea"></div>
+
+<div class="modal" id="motifModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Motiv auswählen">
+    <div class="modal-head">
+      <b>Motiv auswählen</b>
+      <input type="text" id="motifSearch" placeholder="Suchen … (z. B. Katze)">
+      <button class="btn" id="motifClose" title="Schließen">✕</button>
+    </div>
+    <div class="tabs" id="motifTabs"></div>
+    <div class="modal-body">
+      <div class="textform" id="textForm" hidden>
+        <div>
+          <label>Dein Text (mehrere Zeilen möglich)</label>
+          <textarea id="txtInput">HALLO</textarea>
+          <div class="row">
+            <div><label>Farbe</label><select id="txtColor"></select></div>
+            <div><label>Schriftgröße</label><select id="txtScale"><option value="1">Klein (7 Perlen hoch)</option><option value="2" selected>Groß (14 Perlen hoch)</option></select></div>
+          </div>
+          <label class="inline"><input type="checkbox" id="txtOutline" checked> Schwarzer Umriss</label>
+          <div class="small-btns"><button class="btn primary" id="txtUse">Text übernehmen</button></div>
+          <div class="hint">Erlaubt: A–Z, Ä Ö Ü, 0–9, Leerzeichen und ! ? . - + ♥ (statt ♥ geht auch &lt;3)</div>
+        </div>
+        <div class="textprev"><canvas id="txtPrev"></canvas></div>
+      </div>
+      <div class="mgrid" id="motifGrid"></div>
+    </div>
+  </div>
+</div>
+<div id="notice" role="status" style="display:none;position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:10;max-width:calc(100% - 32px)"></div>
+
+<script>
+"use strict";
+/* ====================================================================
+   Paletten (RGB-Werte sind Näherungen der echten Perlenfarben)
+   ==================================================================== */
+const PALETTES = {
+  hama: {name:"Hama", prefix:"H", colors:[
+    ["01","Weiß","#F0F0F0"],["02","Creme","#F0E2BE"],["03","Gelb","#F5D300"],["04","Orange","#EE7A1F"],
+    ["05","Rot","#C8262F"],["06","Rosa","#EBA0BE"],["07","Lila","#6C3E8E"],["08","Blau","#2A4E9F"],
+    ["09","Hellblau","#3D8AD0"],["10","Grün","#1F8A47"],["11","Hellgrün","#5DBB4A"],["12","Braun","#6B4231"],
+    ["17","Grau","#8C8C8C"],["18","Schwarz","#1E1E1E"],["20","Rotbraun","#8E3B2A"],["21","Hellbraun","#A8693A"],
+    ["22","Dunkelrot","#9A1F2A"],["26","Hautfarbe","#E8A68A"],["27","Beige","#D9B98F"],["28","Dunkelgrün","#24473A"],
+    ["29","Weinrot","#A31C4A"],["30","Burgund","#6A1B2C"],["31","Türkis","#4AA3B8"],["33","Kirschrot","#E0306C"],
+    ["43","Pastellgelb","#F7E77C"],["44","Pastellrot","#F08A84"],["45","Pastellviolett","#A98BC8"],["46","Pastellblau","#8FB8E6"],
+    ["47","Pastellgrün","#9ED6A1"],["48","Pastellrosa","#F2B6CC"],["49","Azurblau","#3BA9D9"],["60","Teddybraun","#B07A3E"],
+    ["70","Hellgrau","#B9B9B9"],["71","Dunkelgrau","#4A4A4A"],["75","Tan","#C4A177"],["76","Olivgrün","#6F7A3A"],
+    ["77","Sandgelb","#E8C36A"],["78","Pfirsich","#F4C0A0"],["79","Mint","#8FD9C4"],["82","Pflaume","#7A3A6E"],
+    ["83","Petrol","#1F6E7A"],["84","Olive","#8E8A3C"],["95","Pastellpink","#F7C6D9"],["96","Lavendel","#C2B4E0"],
+    ["97","Hellblau Pastell","#BFE0F2"],["98","Limette","#C5E06A"]
+  ]},
+  perler: {name:"Perler", prefix:"P", colors:[
+    ["01","White","#F1F1F1"],["02","Cream","#E0DCAA"],["03","Yellow","#ECD800"],["04","Orange","#ED6120"],
+    ["05","Red","#BF2633"],["06","Bubble Gum","#E7849E"],["07","Purple","#6B3F8B"],["08","Dark Blue","#2B3F87"],
+    ["09","Light Blue","#3370C0"],["10","Dark Green","#1C753E"],["11","Light Green","#56BA9F"],["12","Brown","#513A30"],
+    ["17","Grey","#8A8D91"],["18","Black","#2E2F32"],["20","Rust","#8C3B30"],["21","Light Brown","#815D34"],
+    ["33","Peach","#EEBAB2"],["35","Tan","#BC9065"],["38","Magenta","#F22B95"],["47","Pastel Green","#76C882"],
+    ["52","Pastel Blue","#5A8BD0"],["54","Pastel Lavender","#8A72C1"],["56","Pastel Yellow","#FDF28A"],["57","Cheddar","#F1AA0C"],
+    ["58","Toothpaste","#92D2CF"],["59","Hot Coral","#FF3B5C"],["60","Plum","#A24B9B"],["61","Kiwi Lime","#6DC044"],
+    ["62","Turquoise","#2B89C6"],["63","Blush","#FF8383"],["70","Periwinkle","#6E86C9"],["79","Light Pink","#F6B3DD"],
+    ["83","Pink","#E64B9E"],["88","Raspberry","#A5326E"],["90","Butterscotch","#D3893C"],["92","Dark Grey","#4D5156"],
+    ["93","Blueberry Cream","#879DE0"],["96","Cranapple","#7F2F3B"],["97","Prickly Pear","#BDDA2E"],["98","Sand","#E4CC9A"]
+  ]},
+  basic: {name:"Grundfarben (16)", prefix:"", colors:[
+    ["1","Weiß","#F2F2F2"],["2","Schwarz","#1E1E1E"],["3","Grau","#8C8C8C"],["4","Rot","#C8262F"],
+    ["5","Orange","#EE7A1F"],["6","Gelb","#F5D300"],["7","Hellgrün","#5DBB4A"],["8","Dunkelgrün","#1F8A47"],
+    ["9","Hellblau","#3D8AD0"],["10","Dunkelblau","#2A3F87"],["11","Lila","#6C3E8E"],["12","Rosa","#EBA0BE"],
+    ["13","Braun","#6B4231"],["14","Beige","#D9B98F"],["15","Hautfarbe","#E8A68A"],["16","Türkis","#4AA3B8"]
+  ]}
+};
+
+/* ====================================================================
+   Perlensysteme & Steckplatten
+   pitch = Abstand Perle zu Perle in mm (bestimmt die fertige Größe)
+   ==================================================================== */
+const SYSTEMS = [
+  {id:"hama-midi",   name:"Hama Midi (5 mm)",          pitch:5,   palette:"hama"},
+  {id:"hama-mini",   name:"Hama Mini (2,5 mm)",        pitch:2.5, palette:"hama"},
+  {id:"hama-maxi",   name:"Hama Maxi (10 mm)",         pitch:10,  palette:"hama"},
+  {id:"perler",      name:"Perler (5 mm)",             pitch:5,   palette:"perler"},
+  {id:"perler-mini", name:"Perler Mini (2,6 mm)",      pitch:2.6, palette:"perler"},
+  {id:"artkal-s",    name:"Artkal S (5 mm)",           pitch:5,   palette:"perler"},
+  {id:"artkal-c",    name:"Artkal C / Mini (2,6 mm)",  pitch:2.6, palette:"perler"},
+  {id:"artkal-r",    name:"Artkal R (2,6 mm, rund)",   pitch:2.6, palette:"perler"},
+  {id:"pyssla",      name:"IKEA Pyssla (5 mm)",        pitch:5,   palette:"basic"},
+  {id:"nabbi",       name:"Nabbi (5 mm)",              pitch:5,   palette:"hama"},
+  {id:"custom",      name:"Eigenes Maß …",             pitch:5,   palette:"hama"}
+];
+// shape: "rect" | "round"
+const BOARDS = [
+  {id:"sq29",  name:"Quadrat groß 29 × 29",          w:29, h:29, shape:"rect"},
+  {id:"sq15",  name:"Quadrat klein 15 × 15",         w:15, h:15, shape:"rect"},
+  {id:"sq14",  name:"Quadrat klein 14 × 14 (Perler)",w:14, h:14, shape:"rect"},
+  {id:"sq48",  name:"Mini-Platte 48 × 48",           w:48, h:48, shape:"rect"},
+  {id:"sq50",  name:"Mini-Platte 50 × 50 (Artkal)",  w:50, h:50, shape:"rect"},
+  {id:"sq16",  name:"Maxi-Platte 16 × 16",           w:16, h:16, shape:"rect"},
+  {id:"rect",  name:"Rechteck 29 × 58",              w:29, h:58, shape:"rect"},
+  {id:"rd29",  name:"Rund Ø 29",                     w:29, h:29, shape:"round"},
+  {id:"rd15",  name:"Rund Ø 15 (klein)",             w:15, h:15, shape:"round"},
+  {id:"custom",name:"Eigene Größe",                  w:29, h:29, shape:"rect"}
+];
+const SYSTEM_DEFAULT_BOARD = {"hama-mini":"sq48","perler-mini":"sq50","artkal-c":"sq50","artkal-r":"sq50","hama-maxi":"sq16"};
+
+const SYMBOLS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789abdefghkmnpqrtuy+#%&@=?!*$§<>".split("");
+
+/* ====================================================================
+   Farbmathematik
+   ==================================================================== */
+function hexToRgb(h){const n=parseInt(h.slice(1),16);return [(n>>16)&255,(n>>8)&255,n&255];}
+function srgbToLin(c){c/=255;return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
+function rgbToLab(r,g,b){
+  const R=srgbToLin(r),G=srgbToLin(g),B=srgbToLin(b);
+  let x=(R*0.4124+G*0.3576+B*0.1805)/0.95047,y=(R*0.2126+G*0.7152+B*0.0722),z=(R*0.0193+G*0.1192+B*0.9505)/1.08883;
+  const f=t=>t>0.008856?Math.cbrt(t):(7.787*t+16/116);
+  x=f(x);y=f(y);z=f(z);
+  return [116*y-16,500*(x-y),200*(y-z)];
+}
+function lum(rgb){return 0.299*rgb[0]+0.587*rgb[1]+0.114*rgb[2];}
+
+/* ====================================================================
+   Zustand
+   ==================================================================== */
+const $=id=>document.getElementById(id);
+const state={
+  img:null, imgName:"vorlage",
+  disabled:{},           // paletteId -> Set of codes
+  grid:null, gw:0, gh:0, // grid: Int16Array, -1 = leer, -2 = außerhalb (runde Platte)
+  colors:[],             // aktive Palette: {code,name,hex,rgb,lab}
+  zoom:0, cell:16,
+  tool:"none", paintIdx:-1, highlight:-1,
+  undo:[], edited:false,
+  removed:new Set()      // Codes von Farben, die komplett entfernt wurden
+};
+
+function fillSelect(sel,items){sel.innerHTML=items.map(i=>`<option value="${i.id}">${i.name}</option>`).join("");}
+fillSelect($("system"),SYSTEMS);
+fillSelect($("board"),BOARDS);
+fillSelect($("palette"),Object.entries(PALETTES).map(([id,p])=>({id,name:p.name})));
+
+function curSystem(){return SYSTEMS.find(s=>s.id===$("system").value);}
+function curBoard(){return BOARDS.find(b=>b.id===$("board").value);}
+
+function applyBoardPreset(){
+  const b=curBoard();
+  if(b.id!=="custom"){$("bw").value=b.w;$("bh").value=b.h;}
+}
+function onSystemChange(){
+  const s=curSystem();
+  $("palette").value=s.palette;
+  $("board").value=SYSTEM_DEFAULT_BOARD[s.id]||"sq29";
+  applyBoardPreset();
+  $("pitchWrap").style.display=s.id==="custom"?"block":"none";
+  if(s.id==="custom")applyCustomPitch();
+  buildPaletteGrid();
+}
+function applyCustomPitch(){
+  const s=SYSTEMS.find(x=>x.id==="custom"),v=parseFloat($("pitch").value);
+  s.pitch=isFinite(v)&&v>0?v:5;
+}
+function notify(msg){
+  const el=$("notice");el.textContent=msg;el.style.display="block";
+  clearTimeout(notify.t);notify.t=setTimeout(()=>el.style.display="none",4000);
+}
+/* Speichern: im veröffentlichten Artifact über claude.use("downloads"), lokal per Download-Link */
+const inArtifact=()=>!!(window.claude&&window.claude.use);
+async function saveFile(filename,blob){
+  if(inArtifact()){
+    try{
+      const dl=await window.claude.use("downloads");
+      if(!dl){notify("Speichern ist in dieser Ansicht nicht möglich.");return;}
+      await dl.save({filename,data:blob});
+    }catch(e){
+      if(e&&e.code!=="declined")notify("Speichern fehlgeschlagen: "+(e.message||e.code||e));
+    }
+    return;
+  }
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=filename;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+}
+
+/* ---------- Palette ---------- */
+function activePalette(){
+  const pid=$("palette").value, p=PALETTES[pid], off=state.disabled[pid]||new Set();
+  return p.colors.filter(c=>!off.has(c[0])).map(c=>{
+    const rgb=hexToRgb(c[2]);return {code:p.prefix+c[0],raw:c[0],name:c[1],hex:c[2],rgb,lab:rgbToLab(...rgb)};
+  });
+}
+function buildPaletteGrid(){
+  const pid=$("palette").value,p=PALETTES[pid];
+  if(!state.disabled[pid])state.disabled[pid]=new Set();
+  const off=state.disabled[pid];
+  $("palgrid").innerHTML="";
+  p.colors.forEach(c=>{
+    const d=document.createElement("div");
+    d.className="pc"+(off.has(c[0])?" off":"");
+    d.style.background=c[2];
+    d.title=`${p.prefix}${c[0]} ${c[1]}`;
+    d.onclick=()=>{off.has(c[0])?off.delete(c[0]):off.add(c[0]);d.classList.toggle("off");schedule();};
+    $("palgrid").appendChild(d);
+  });
+  $("maxColors").max=p.colors.length;
+  if(+$("maxColors").value>p.colors.length)$("maxColors").value=p.colors.length;
+  updateLabels();
+}
+
+/* ---------- Bild laden ---------- */
+function loadFile(f){
+  if(!f||!f.type.startsWith("image/"))return;
+  const url=URL.createObjectURL(f);
+  const img=new Image();
+  img.onload=()=>{
+    state.img=img;state.imgName=f.name.replace(/\.[^.]+$/,"")||"vorlage";
+    state.pixelArt=false;state.motif=null;state.removed.clear();
+    $("motifScaleWrap").style.display="none";
+    $("dropInner").innerHTML=`<img src="${url}"><small>${img.naturalWidth} × ${img.naturalHeight} px – klicken zum Ersetzen</small>`;
+    state.zoom=0;schedule();
+  };
+  img.src=url;
+}
+$("drop").onclick=()=>$("file").click();
+$("file").onchange=e=>loadFile(e.target.files[0]);
+["dragenter","dragover"].forEach(ev=>$("drop").addEventListener(ev,e=>{e.preventDefault();$("drop").classList.add("over");}));
+["dragleave","drop"].forEach(ev=>$("drop").addEventListener(ev,e=>{e.preventDefault();$("drop").classList.remove("over");}));
+$("drop").addEventListener("drop",e=>loadFile(e.dataTransfer.files[0]));
+document.addEventListener("paste",e=>{const it=[...(e.clipboardData||{}).items||[]].find(i=>i.type.startsWith("image/"));if(it)loadFile(it.getAsFile());});
+
+/* ====================================================================
+   Umwandlung Bild -> Raster
+   ==================================================================== */
+let timer=null;
+function schedule(){clearTimeout(timer);timer=setTimeout(convert,60);}
+
+function convert(){
+  updateLabels();
+  if(!state.img)return;
+  const bw=clampInt($("bw").value,5,200),bh=clampInt($("bh").value,5,200);
+  const nx=clampInt($("nx").value,1,20),ny=clampInt($("ny").value,1,20);
+  const gw=bw*nx,gh=bh*ny;
+  const round=curBoard().shape==="round";
+  // Muster-Motive passen sich immer an die aktuelle Rastergröße an
+  if(state.motif&&state.motif.gen) state.img=rowsToCanvas(state.motif.gen(gw,gh));
+
+  // 1) Bild in Rastergröße zeichnen (mehrstufig verkleinern für bessere Qualität)
+  const src=downscale(state.img,gw,gh,$("fit").value);
+  const ctx=src.getContext("2d");
+  const data=ctx.getImageData(0,0,gw,gh).data;
+
+  // 2) Anpassungen
+  const br=+$("bright").value*1.28, ct=+$("contrast").value, sa=+$("sat").value/100;
+  const cf=(259*(ct+255))/(255*(259-ct));
+  const px=new Float32Array(gw*gh*3), alpha=new Uint8Array(gw*gh);
+  for(let i=0;i<gw*gh;i++){
+    let r=data[i*4],g=data[i*4+1],b=data[i*4+2];
+    alpha[i]=data[i*4+3]>=128?1:0;
+    r=cf*(r-128)+128+br; g=cf*(g-128)+128+br; b=cf*(b-128)+128+br;
+    if(sa){const l=0.299*r+0.587*g+0.114*b;r=l+(r-l)*(1+sa);g=l+(g-l)*(1+sa);b=l+(b-l)*(1+sa);}
+    px[i*3]=clamp(r);px[i*3+1]=clamp(g);px[i*3+2]=clamp(b);
+  }
+
+  // 3) Hintergrund entfernen (Farbe aus den Ecken, Flutfüllung vom Rand)
+  if($("removeBg").checked) removeBackground(px,alpha,gw,gh,+$("bgTol").value);
+
+  // 4) Maske für runde Platten
+  const mask=new Uint8Array(gw*gh).fill(1);
+  if(round){
+    for(let by=0;by<ny;by++)for(let bx=0;bx<nx;bx++){
+      const cx=(bw-1)/2,cy=(bh-1)/2,rx=bw/2,ry=bh/2;
+      for(let y=0;y<bh;y++)for(let x=0;x<bw;x++){
+        const dx=(x-cx)/rx,dy=(y-cy)/ry;
+        if(dx*dx+dy*dy>1.0) mask[(by*bh+y)*gw+bx*bw+x]=0;
+      }
+    }
+  }
+
+  // 5) Farben zuordnen
+  let pal=activePalette();
+  const grid=new Int16Array(gw*gh);
+  if(!pal.length){state.colors=[];grid.fill(-1);finish(grid,gw,gh,mask);return;}
+  const maxC=+$("maxColors").value;
+  if(maxC<pal.length){
+    // erste Runde ohne Dithering zählen, die häufigsten Farben behalten
+    const cnt=new Array(pal.length).fill(0);
+    for(let i=0;i<gw*gh;i++) if(alpha[i]&&mask[i]) cnt[nearest(pal,px[i*3],px[i*3+1],px[i*3+2])]++;
+    // entfernte Farben belegen keinen Platz im Limit, bleiben aber zum Zuordnen erhalten
+    const ranked=pal.map((c,i)=>({c,n:cnt[i]})).filter(o=>o.n>0).sort((a,b)=>b.n-a.n);
+    pal=ranked.filter(o=>state.removed.has(o.c.code)).concat(ranked.filter(o=>!state.removed.has(o.c.code)).slice(0,maxC)).map(o=>o.c);
+    if(!pal.length)pal=activePalette().slice(0,1);
+  }
+  const dm=$("dither").value, strength=dm==="fs"?1:dm==="fs50"?0.5:0;
+  for(let y=0;y<gh;y++)for(let x=0;x<gw;x++){
+    const i=y*gw+x;
+    if(!alpha[i]||!mask[i]){grid[i]=-1;continue;}
+    const r=px[i*3],g=px[i*3+1],b=px[i*3+2];
+    const k=nearest(pal,r,g,b);grid[i]=k;
+    if(strength){
+      const c=pal[k].rgb,er=(r-c[0])*strength,eg=(g-c[1])*strength,eb=(b-c[2])*strength;
+      spread(px,alpha,gw,gh,x+1,y,er,eg,eb,7/16);
+      spread(px,alpha,gw,gh,x-1,y+1,er,eg,eb,3/16);
+      spread(px,alpha,gw,gh,x,y+1,er,eg,eb,5/16);
+      spread(px,alpha,gw,gh,x+1,y+1,er,eg,eb,1/16);
+    }
+  }
+  state.colors=pal;
+  // komplett entfernte Farben -> keine Perle
+  for(let i=0;i<grid.length;i++) if(grid[i]>=0&&state.removed.has(pal[grid[i]].code)) grid[i]=-1;
+  finish(grid,gw,gh,mask);
+}
+/* Eine Farbe komplett aus der Vorlage entfernen (Felder bleiben leer) */
+function removeColor(idx){
+  const code=state.colors[idx].code,stroke=[];
+  for(let i=0;i<state.grid.length;i++) if(state.grid[i]===idx){stroke.push([i,idx]);state.grid[i]=-1;}
+  state.removed.add(code);
+  stroke.removedCode=code;state.undo.push(stroke);$("undo").disabled=false;
+  if(state.highlight===idx)state.highlight=-1;
+  if(state.paintIdx===idx){state.paintIdx=-1;if(state.tool==="paint")setTool("none");}
+  render();buildLegend();
+  notify(`${code} ${state.colors[idx].name} entfernt (${stroke.length} Perlen).`);
+}
+function restoreColor(code){
+  state.removed.delete(code);
+  convert(); // neu berechnen, damit die Farbe wieder an ihren Stellen erscheint
+}
+function finish(grid,gw,gh,mask){
+  for(let i=0;i<grid.length;i++) if(!mask[i]) grid[i]=-2;
+  state.grid=grid;state.gw=gw;state.gh=gh;
+  state.undo=[];$("undo").disabled=true;state.highlight=-1;state.paintIdx=-1;
+  render();buildLegend();
+}
+function spread(px,alpha,w,h,x,y,er,eg,eb,f){
+  if(x<0||x>=w||y>=h)return;const j=y*w+x;if(!alpha[j])return;
+  px[j*3]+=er*f;px[j*3+1]+=eg*f;px[j*3+2]+=eb*f;
+}
+function nearest(pal,r,g,b){
+  const L=rgbToLab(clamp(r),clamp(g),clamp(b));
+  let best=0,bd=1e9;
+  for(let k=0;k<pal.length;k++){
+    const l=pal[k].lab,dl=L[0]-l[0],da=L[1]-l[1],db=L[2]-l[2];
+    const d=dl*dl+da*da+db*db;
+    if(d<bd){bd=d;best=k;}
+  }
+  return best;
+}
+function removeBackground(px,alpha,w,h,tol){
+  // Referenzfarbe = Mittel der 4 Ecken
+  const corners=[0,w-1,(h-1)*w,(h-1)*w+w-1].filter(i=>alpha[i]);
+  if(!corners.length)return;
+  const ref=[0,0,0];corners.forEach(i=>{ref[0]+=px[i*3];ref[1]+=px[i*3+1];ref[2]+=px[i*3+2];});
+  const refLab=rgbToLab(ref[0]/corners.length,ref[1]/corners.length,ref[2]/corners.length);
+  const seen=new Uint8Array(w*h),stack=[];
+  for(let x=0;x<w;x++){stack.push(x,(h-1)*w+x);}
+  for(let y=0;y<h;y++){stack.push(y*w,y*w+w-1);}
+  while(stack.length){
+    const i=stack.pop();if(seen[i])continue;seen[i]=1;
+    if(!alpha[i]){/* bereits transparent: weiter ausbreiten */}
+    else{
+      const L=rgbToLab(px[i*3],px[i*3+1],px[i*3+2]);
+      const d=Math.hypot(L[0]-refLab[0],L[1]-refLab[1],L[2]-refLab[2]);
+      if(d>tol)continue;
+      alpha[i]=0;
+    }
+    const x=i%w,y=(i/w)|0;
+    if(x>0)stack.push(i-1);if(x<w-1)stack.push(i+1);if(y>0)stack.push(i-w);if(y<h-1)stack.push(i+w);
+  }
+}
+function downscale(img,gw,gh,fit){
+  const iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height;
+  let sx=0,sy=0,sw=iw,sh=ih,dx=0,dy=0,dw=gw,dh=gh;
+  const ir=iw/ih,gr=gw/gh;
+  if(fit==="contain"){
+    if(ir>gr){dh=Math.max(1,Math.round(gw/ir));dy=Math.floor((gh-dh)/2);}
+    else{dw=Math.max(1,Math.round(gh*ir));dx=Math.floor((gw-dw)/2);}
+  }else if(fit==="cover"){
+    if(ir>gr){sw=ih*gr;sx=(iw-sw)/2;}else{sh=iw/gr;sy=(ih-sh)/2;}
+  }
+  // Pixel-Motive: ohne Weichzeichnen, möglichst in ganzzahliger Vergrößerung
+  if(state.pixelArt){
+    const out=document.createElement("canvas");out.width=gw;out.height=gh;
+    const oc=out.getContext("2d",{willReadFrequently:true});oc.imageSmoothingEnabled=false;
+    if(fit==="contain"){
+      const sv=$("motifScale").value;
+      const s=(sv==="auto"||(state.motif&&state.motif.gen))?Math.floor(Math.min(gw/iw,gh/ih)):+sv;
+      if(s>=1&&iw*s<=gw&&ih*s<=gh){
+        const w=iw*s,h=ih*s;
+        oc.drawImage(img,0,0,iw,ih,Math.floor((gw-w)/2),Math.floor((gh-h)/2),w,h);
+        return out;
+      }
+    }
+    oc.drawImage(img,sx,sy,sw,sh,dx,dy,dw,dh);
+    return out;
+  }
+  // Quelle zuschneiden und schrittweise halbieren (bessere Mittelung)
+  let c=document.createElement("canvas");c.width=Math.round(sw);c.height=Math.round(sh);
+  c.getContext("2d").drawImage(img,sx,sy,sw,sh,0,0,c.width,c.height);
+  while(c.width/2>=dw*2&&c.height/2>=dh*2){
+    const n=document.createElement("canvas");n.width=Math.round(c.width/2);n.height=Math.round(c.height/2);
+    const nc=n.getContext("2d");nc.imageSmoothingQuality="high";nc.drawImage(c,0,0,n.width,n.height);c=n;
+  }
+  const out=document.createElement("canvas");out.width=gw;out.height=gh;
+  const oc=out.getContext("2d",{willReadFrequently:true});
+  oc.imageSmoothingEnabled=true;oc.imageSmoothingQuality="high";
+  oc.drawImage(c,0,0,c.width,c.height,dx,dy,dw,dh);
+  return out;
+}
+const clamp=v=>v<0?0:v>255?255:v;
+function clampInt(v,a,b){v=parseInt(v,10);if(!isFinite(v))v=a;return Math.min(b,Math.max(a,v));}
+
+/* ====================================================================
+   Darstellung
+   ==================================================================== */
+function computeCell(){
+  if(state.zoom>0)return state.zoom;
+  const st=$("stage"),pad=40;
+  const c=Math.floor(Math.min((st.clientWidth-pad)/state.gw,(st.clientHeight-pad)/state.gh));
+  return Math.max(3,Math.min(40,c));
+}
+function drawPattern(canvas,cell,opts){
+  const {gw,gh,grid,colors}=state,bw=+$("bw").value,bh=+$("bh").value;
+  canvas.width=gw*cell;canvas.height=gh*cell;
+  const c=canvas.getContext("2d");
+  const view=opts.view;
+  c.fillStyle=opts.bg||"#ffffff";c.fillRect(0,0,canvas.width,canvas.height);
+  if(opts.orig&&state.img){
+    const s=downscale(state.img,gw,gh,$("fit").value);c.imageSmoothingEnabled=false;c.drawImage(s,0,0,canvas.width,canvas.height);
+  }else{
+    for(let y=0;y<gh;y++)for(let x=0;x<gw;x++){
+      const v=grid[y*gw+x],X=x*cell,Y=y*cell;
+      if(v===-2){c.fillStyle=opts.outside||"#e9e9e9";c.fillRect(X,Y,cell,cell);continue;}
+      if(v<0){
+        if(view==="beads"&&cell>=6){c.fillStyle=opts.peg||"#d8d8d8";c.beginPath();c.arc(X+cell/2,Y+cell/2,cell*0.13,0,7);c.fill();}
+        continue;
+      }
+      const col=colors[v];
+      const dim=state.highlight>=0&&state.highlight!==v;
+      c.globalAlpha=dim?0.15:1;
+      c.fillStyle=col.hex;
+      if(view==="beads"){
+        c.beginPath();c.arc(X+cell/2,Y+cell/2,cell*0.47,0,7);c.fill();if(cell>=6){c.strokeStyle="rgba(0,0,0,.22)";c.lineWidth=1;c.stroke();}
+        if(cell>=6){c.fillStyle="rgba(0,0,0,.28)";c.beginPath();c.arc(X+cell/2,Y+cell/2,cell*0.17,0,7);c.fill();}
+      }else if(view==="ironed"){
+        c.beginPath();c.arc(X+cell/2,Y+cell/2,cell*0.56,0,7);c.fill();
+        if(cell>=6){c.fillStyle="rgba(0,0,0,.18)";c.beginPath();c.arc(X+cell/2,Y+cell/2,cell*0.09,0,7);c.fill();}
+      }else{
+        c.fillRect(X,Y,cell,cell);
+        if(view==="symbols"&&cell>=9){
+          c.fillStyle=lum(col.rgb)>140?"#000":"#fff";
+          c.font=`600 ${Math.floor(cell*0.62)}px system-ui,sans-serif`;c.textAlign="center";c.textBaseline="middle";
+          c.fillText(SYMBOLS[v%SYMBOLS.length],X+cell/2,Y+cell/2+1);
+        }
+      }
+      c.globalAlpha=1;
+    }
+  }
+  if(opts.grid&&cell>=5){
+    c.strokeStyle="rgba(0,0,0,.18)";c.lineWidth=1;c.beginPath();
+    for(let x=0;x<=gw;x++){c.moveTo(x*cell+.5,0);c.lineTo(x*cell+.5,gh*cell);}
+    for(let y=0;y<=gh;y++){c.moveTo(0,y*cell+.5);c.lineTo(gw*cell,y*cell+.5);}
+    c.stroke();
+    // jede 5. / 10. Linie kräftiger zum Abzählen
+    c.strokeStyle="rgba(0,0,0,.35)";c.beginPath();
+    for(let x=0;x<=gw;x+=5){c.moveTo(x*cell+.5,0);c.lineTo(x*cell+.5,gh*cell);}
+    for(let y=0;y<=gh;y+=5){c.moveTo(0,y*cell+.5);c.lineTo(gw*cell,y*cell+.5);}
+    c.stroke();
+  }
+  if(opts.boards){
+    c.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--accent").trim()||"#d6457a";
+    c.lineWidth=Math.max(2,cell/6);c.beginPath();
+    for(let x=0;x<=gw;x+=bw){c.moveTo(x*cell,0);c.lineTo(x*cell,gh*cell);}
+    for(let y=0;y<=gh;y+=bh){c.moveTo(0,y*cell);c.lineTo(gw*cell,y*cell);}
+    c.stroke();
+  }
+}
+function render(){
+  if(!state.grid)return;
+  $("empty").style.display="none";$("pattern").style.display="block";
+  state.cell=computeCell();
+  const dark=matchMedia("(prefers-color-scheme: dark)").matches;
+  drawPattern($("pattern"),state.cell,{
+    view:$("view").value,grid:$("showGrid").checked,boards:$("showBoards").checked,orig:$("showOrig").checked,
+    bg:"#fbfbf9",peg:"#d6d6d2",outside:dark?"#3a3a40":"#ececec"
+  });
+  updateStats();
+}
+function counts(){
+  const n=new Array(state.colors.length).fill(0);
+  for(const v of state.grid) if(v>=0) n[v]++;
+  return n;
+}
+function updateStats(){
+  const n=counts(),total=n.reduce((a,b)=>a+b,0),used=n.filter(x=>x).length;
+  const p=curSystem().pitch,wcm=(state.gw*p/10).toFixed(1).replace(".",","),hcm=(state.gh*p/10).toFixed(1).replace(".",",");
+  $("sBeads").textContent=total.toLocaleString("de-DE");
+  $("sColors").textContent=used;
+  $("sSize").textContent=`${wcm} × ${hcm} cm`;
+  $("sBoards").textContent=`${$("nx").value} × ${$("ny").value}`;
+  $("info").textContent=`${state.gw} × ${state.gh} Perlen · ${curSystem().name}`;
+  ["print","png","csv"].forEach(id=>$(id).disabled=false);
+  updatePrintInfo();
+}
+function buildLegend(){
+  const n=counts(),ul=$("legend");ul.innerHTML="";
+  state.colors.map((c,i)=>({c,i,n:n[i]})).filter(o=>o.n>0).sort((a,b)=>b.n-a.n).forEach(o=>{
+    const li=document.createElement("li");
+    if(o.i===state.highlight)li.classList.add("sel");
+    const fg=lum(o.c.rgb)>140?"#000":"#fff";
+    li.innerHTML=`<span class="sw" style="background:${o.c.hex};color:${fg}">${SYMBOLS[o.i%SYMBOLS.length]}</span><span class="nm"><b>${o.c.code}</b> ${o.c.name}</span><span class="ct">${o.n}</span><button class="rm" title="Diese Farbe komplett entfernen (z.&nbsp;B. Hintergrund)">✕</button>`;
+    li.onclick=()=>{
+      state.highlight=state.highlight===o.i?-1:o.i;state.paintIdx=o.i;
+      render();buildLegend();
+    };
+    li.querySelector(".rm").onclick=e=>{e.stopPropagation();removeColor(o.i);};
+    ul.appendChild(li);
+  });
+  // Entfernte Farben mit Möglichkeit zur Wiederherstellung
+  if(state.removed.size){
+    const li=document.createElement("li");li.style.cursor="default";
+    li.innerHTML=`<span class="hint">Entfernte Farben (anklicken zum Zurückholen):</span>`;ul.appendChild(li);
+    const wrap=document.createElement("div");wrap.className="removed";
+    const all=PALETTES[$("palette").value];
+    [...state.removed].forEach(code=>{
+      const c=all.colors.find(x=>all.prefix+x[0]===code);
+      const b=document.createElement("button");b.className="btn chip";
+      b.innerHTML=`<span class="sw" style="width:14px;height:14px;background:${c?c[2]:"#ccc"}"></span>${code}${c?" "+c[1]:""} ↺`;
+      b.title="Wiederherstellen (berechnet die Vorlage neu – eigene Malereien gehen dabei verloren)";
+      b.onclick=()=>restoreColor(code);
+      wrap.appendChild(b);
+    });
+    ul.appendChild(wrap);
+  }
+  // Farben, die nicht im Bild sind, aber zum Malen gewählt werden können
+  const unused=activePalette().filter(c=>!state.colors.some(s=>s.code===c.code));
+  if(unused.length){
+    const li=document.createElement("li");li.style.cursor="default";
+    li.innerHTML=`<span class="hint">Weitere Farben zum Malen:</span>`;ul.appendChild(li);
+    const wrap=document.createElement("div");wrap.className="palgrid";
+    unused.forEach(c=>{
+      const d=document.createElement("div");d.className="pc";d.style.background=c.hex;d.title=`${c.code} ${c.name}`;
+      d.onclick=()=>{state.colors.push(c);state.paintIdx=state.colors.length-1;setTool("paint");buildLegend();};
+      wrap.appendChild(d);
+    });
+    ul.appendChild(wrap);
+  }
+}
+
+/* ---------- Malen ---------- */
+function setTool(t){
+  state.tool=t;
+  $("toolNone").classList.toggle("active",t==="none");
+  $("toolPaint").classList.toggle("active",t==="paint");
+  $("toolErase").classList.toggle("active",t==="erase");
+  $("toolRemove").classList.toggle("active",t==="remove");
+}
+$("toolRemove").onclick=()=>{setTool("remove");notify("Klicke auf eine Perle – ihre Farbe wird überall entfernt.");};
+$("toolNone").onclick=()=>setTool("none");
+$("toolPaint").onclick=()=>{if(state.paintIdx<0)notify("Bitte zuerst rechts in der Farbliste eine Farbe anklicken.");else setTool("paint");};
+$("toolErase").onclick=()=>setTool("erase");
+let painting=false,stroke=null;
+function cellAt(e){
+  const r=$("pattern").getBoundingClientRect();
+  const x=Math.floor((e.clientX-r.left)/r.width*state.gw),y=Math.floor((e.clientY-r.top)/r.height*state.gh);
+  return (x<0||y<0||x>=state.gw||y>=state.gh)?-1:y*state.gw+x;
+}
+function paintAt(e){
+  const i=cellAt(e);if(i<0||state.grid[i]===-2)return;
+  const v=state.tool==="erase"?-1:state.paintIdx;
+  if(state.grid[i]===v)return;
+  stroke.push([i,state.grid[i]]);state.grid[i]=v;render();
+}
+$("pattern").addEventListener("pointerdown",e=>{
+  if(e.button===2){ // Rechtsklick = Farbe aufnehmen
+    const i=cellAt(e);if(i>=0&&state.grid[i]>=0){state.paintIdx=state.grid[i];state.highlight=state.grid[i];setTool("paint");render();buildLegend();}
+    return;
+  }
+  if(state.tool==="none"){
+    const i=cellAt(e);if(i>=0){const v=state.grid[i];const x=i%state.gw,y=(i/state.gw)|0;
+      $("info").textContent=`Spalte ${x+1}, Zeile ${y+1}`+(v>=0?` · ${state.colors[v].code} ${state.colors[v].name}`:" · leer");}
+    return;
+  }
+  if(state.tool==="remove"){
+    const i=cellAt(e);if(i>=0&&state.grid[i]>=0)removeColor(state.grid[i]);
+    return;
+  }
+  painting=true;stroke=[];$("pattern").setPointerCapture(e.pointerId);paintAt(e);
+});
+$("pattern").addEventListener("pointermove",e=>{if(painting)paintAt(e);});
+$("pattern").addEventListener("pointerup",()=>{
+  if(!painting)return;painting=false;
+  if(stroke.length){state.undo.push(stroke);$("undo").disabled=false;buildLegend();}
+});
+$("pattern").addEventListener("contextmenu",e=>e.preventDefault());
+function undo(){
+  const s=state.undo.pop();if(!s)return;
+  for(let k=s.length-1;k>=0;k--)state.grid[s[k][0]]=s[k][1];
+  if(s.removedCode)state.removed.delete(s.removedCode);
+  $("undo").disabled=!state.undo.length;render();buildLegend();
+}
+$("undo").onclick=undo;
+document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="z"){e.preventDefault();undo();}});
+
+/* ---------- Zoom ---------- */
+$("zoomIn").onclick=()=>{state.zoom=Math.min(60,(state.zoom||state.cell)+2);render();};
+$("zoomOut").onclick=()=>{state.zoom=Math.max(2,(state.zoom||state.cell)-2);render();};
+$("zoomFit").onclick=()=>{state.zoom=0;render();};
+window.addEventListener("resize",()=>{if(!state.zoom)render();});
+
+/* ====================================================================
+   Export
+   ==================================================================== */
+function legendRows(){
+  const n=counts();
+  return state.colors.map((c,i)=>({c,i,n:n[i]})).filter(o=>o.n>0).sort((a,b)=>b.n-a.n);
+}
+function exportCanvas(){
+  // Vorlage mit Symbolen + Koordinaten + Legende in einem Bild
+  const cell=Math.max(14,Math.min(28,Math.floor(2400/Math.max(state.gw,state.gh))));
+  const pat=document.createElement("canvas");
+  drawPattern(pat,cell,{view:"symbols",grid:true,boards:true,bg:"#fff",outside:"#eee"});
+  const rows=legendRows(),margin=cell+8,lh=26,cols=Math.max(1,Math.floor(pat.width/260));
+  const legH=Math.ceil(rows.length/cols)*lh+60;
+  const out=document.createElement("canvas");out.width=pat.width+margin*2;out.height=pat.height+margin*2+legH;
+  const c=out.getContext("2d");c.fillStyle="#fff";c.fillRect(0,0,out.width,out.height);
+  c.drawImage(pat,margin,margin);
+  c.fillStyle="#555";c.font=`${Math.floor(cell*0.5)}px system-ui`;c.textAlign="center";c.textBaseline="middle";
+  for(let x=0;x<state.gw;x++)if((x+1)%5===0||x===0)c.fillText(x+1,margin+x*cell+cell/2,margin/2);
+  for(let y=0;y<state.gh;y++)if((y+1)%5===0||y===0)c.fillText(y+1,margin/2,margin+y*cell+cell/2);
+  let Y=pat.height+margin*2+10;
+  c.textAlign="left";c.fillStyle="#000";c.font="600 16px system-ui";
+  c.fillText(`${curSystem().name} · ${state.gw}×${state.gh} Perlen · ${legendRows().reduce((a,o)=>a+o.n,0)} Perlen gesamt`,margin,Y+8);
+  Y+=34;c.font="14px system-ui";
+  rows.forEach((o,k)=>{
+    const col=k%cols,row=Math.floor(k/cols),X=margin+col*260,YY=Y+row*lh;
+    c.fillStyle=o.c.hex;c.beginPath();c.arc(X+10,YY,10,0,7);c.fill();c.strokeStyle="#999";c.stroke();
+    c.fillStyle=lum(o.c.rgb)>140?"#000":"#fff";c.textAlign="center";c.font="600 11px system-ui";c.fillText(SYMBOLS[o.i%SYMBOLS.length],X+10,YY+1);
+    c.fillStyle="#000";c.textAlign="left";c.font="14px system-ui";c.fillText(`${o.c.code} ${o.c.name} – ${o.n}`,X+26,YY+1);
+  });
+  return out;
+}
+$("png").onclick=()=>{
+  exportCanvas().toBlob(b=>saveFile(state.imgName+"_buegelperlen.png",b));
+};
+$("csv").onclick=()=>{
+  const lines=["Code;Farbe;Symbol;Anzahl"].concat(legendRows().map(o=>`${o.c.code};${o.c.name};${SYMBOLS[o.i%SYMBOLS.length]};${o.n}`));
+  saveFile(state.imgName+"_einkaufsliste.csv",new Blob(["﻿"+lines.join("\n")],{type:"text/csv"}));
+};
+/* ====================================================================
+   Drucken: Papierformat, Ausrichtung, Maßstab
+   ==================================================================== */
+const PAPERS={A4:[210,297],A3:[297,420],A5:[148,210],Letter:[215.9,279.4],Legal:[215.9,355.6]};
+const HEAD_MM=12, FOOT_MM=9;   // Platz für Überschrift und Kontrollbalken
+function printPlan(orient){
+  const [w0,h0]=PAPERS[$("paper").value],margin=Math.min(30,Math.max(3,+$("pmargin").value||10));
+  const pw=orient==="landscape"?h0:w0,ph=orient==="landscape"?w0:h0;
+  const cw=pw-2*margin,ch=ph-2*margin-HEAD_MM-FOOT_MM;
+  const bw=+$("bw").value,bh=+$("bh").value,nx=+$("nx").value,ny=+$("ny").value;
+  const gw=state.gw,gh=state.gh,real=$("printScale").value==="real",pitch=curSystem().pitch;
+  const tiles=[];let scale=0;
+  if(real){
+    // 1 Feld = echter Perlenabstand; +2 Felder für die Koordinaten am Rand
+    let cols=Math.floor(cw/pitch)-2,rows=Math.floor(ch/pitch)-2;
+    if(cols<1||rows<1)return null;
+    // wenn möglich ganze Steckplatten pro Seite
+    if(cols>=bw)cols=Math.floor(cols/bw)*bw;
+    if(rows>=bh)rows=Math.floor(rows/bh)*bh;
+    for(let y=0;y<gh;y+=rows)for(let x=0;x<gw;x+=cols)tiles.push({x0:x,y0:y,w:Math.min(cols,gw-x),h:Math.min(rows,gh-y)});
+  }else{
+    if(nx*ny>1){for(let by=0;by<ny;by++)for(let bx=0;bx<nx;bx++)tiles.push({x0:bx*bw,y0:by*bh,w:bw,h:bh,board:by*nx+bx+1});}
+    else tiles.push({x0:0,y0:0,w:gw,h:gh});
+    const t=tiles[0];scale=Math.min(cw/(t.w+2),ch/(t.h+2)); // mm pro Feld
+  }
+  return {orient,pw,ph,margin,cw,ch,tiles,real,pitch,scale};
+}
+function choosePlan(){
+  const o=$("orient").value;
+  if(o!=="auto")return printPlan(o);
+  const a=printPlan("portrait"),b=printPlan("landscape");
+  if(!a)return b;if(!b)return a;
+  if(a.tiles.length!==b.tiles.length)return a.tiles.length<b.tiles.length?a:b;
+  return (!a.real&&b.scale>a.scale*1.05)?b:a;
+}
+function updatePrintInfo(){
+  if(!state.grid){$("printInfo").textContent="";return;}
+  const p=choosePlan();
+  if(!p){$("printInfo").textContent="Seitenrand zu groß für dieses Papier.";return;}
+  const pages=p.tiles.length+($("pOverview").checked?1:0);
+  const fmt=v=>v.toFixed(1).replace(".",",");
+  const size=p.real?`Originalgröße ${fmt(state.gw*p.pitch/10)} × ${fmt(state.gh*p.pitch/10)} cm`
+                   :`1 Feld = ${fmt(p.scale)} mm`;
+  $("printInfo").textContent=`→ ${$("paper").value} ${p.orient==="landscape"?"quer":"hoch"} · ${pages} ${pages===1?"Seite":"Seiten"} · ${size}`;
+}
+function pageCss(p){
+  return `@page{size:${p.pw}mm ${p.ph}mm;margin:${p.margin}mm}
+.pp{break-after:page;page-break-after:always;font-family:system-ui,sans-serif;color:#000}
+.pp:last-child{break-after:auto;page-break-after:auto}
+.pp h3{margin:0;height:${HEAD_MM}mm;font:600 12pt system-ui;display:flex;align-items:center}
+.pp img{display:block}
+.pp .cal{margin-top:3mm;display:flex;align-items:center;gap:3mm;font:8pt system-ui;color:#444}
+.pp .cal i{display:block;flex:none;width:50mm;height:2.5mm;border:0.3mm solid #000;border-top:0;box-sizing:border-box}`;
+}
+$("print").onclick=()=>{
+  const p=choosePlan();
+  if(!p){notify("Seitenrand zu groß für dieses Papier.");return;}
+  const pa=$("printArea");pa.innerHTML="";
+  buildPrintPages(pa,p);
+  if(inArtifact()){
+    // Drucken ist im eingebetteten Artifact gesperrt: druckfertige HTML-Datei speichern
+    const html=`<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><title>${state.imgName} – Ironprint</title><style>body{margin:0}${pageCss(p)}</style></head><body>${pa.innerHTML}<script>window.onload=()=>window.print()<\/script></body></html>`;
+    saveFile(state.imgName+"_druckvorlage.html",new Blob([html],{type:"text/html"}));
+    notify("Druckvorlage wird gespeichert – Datei öffnen, sie startet den Druck. Im Druckdialog „Tatsächliche Größe“ / 100 % wählen.");
+    return;
+  }
+  $("pageStyle").textContent=`@media print{${pageCss(p)}}`;
+  setTimeout(()=>window.print(),150);
+};
+function buildPrintPages(pa,p){
+  const bw=+$("bw").value,bh=+$("bh").value,nx=+$("nx").value,ny=+$("ny").value;
+  if($("pOverview").checked){
+    const all=exportCanvas(),k=Math.min(p.cw/all.width,p.ch/all.height);
+    addPage(pa,`Übersicht – ${curSystem().name}, ${nx}×${ny} Platten à ${bw}×${bh}`,all.toDataURL(),all.width*k,all.height*k,false);
+  }
+  p.tiles.forEach((t,i)=>{
+    const cv=regionCanvas(t.x0,t.y0,t.w,t.h);
+    const mm=p.real?p.pitch:p.scale;
+    let title;
+    if(t.board)title=`Platte ${t.board} – Reihe ${Math.floor(t.y0/bh)+1}, Spalte ${Math.floor(t.x0/bw)+1}`;
+    else if(p.tiles.length===1)title=`Vorlage ${t.w} × ${t.h} Perlen`;
+    else title=`Seite ${i+1}/${p.tiles.length} – Spalten ${t.x0+1}–${t.x0+t.w}, Zeilen ${t.y0+1}–${t.y0+t.h}`;
+    if(p.real)title+=" · Originalgröße 1:1";
+    addPage(pa,title,cv.toDataURL(),(t.w+2)*mm,(t.h+2)*mm,p.real);
+  });
+}
+function addPage(pa,title,src,wmm,hmm,cal){
+  const d=document.createElement("div");d.className="pp";
+  const h=document.createElement("h3");h.textContent=title;d.appendChild(h);
+  const img=document.createElement("img");img.src=src;img.style.width=wmm.toFixed(2)+"mm";img.style.height=hmm.toFixed(2)+"mm";d.appendChild(img);
+  if(cal){const c=document.createElement("div");c.className="cal";c.innerHTML="<i></i><span>Kontrolle: Dieser Balken muss genau 5 cm lang sein – sonst im Druckdialog „Tatsächliche Größe“ / 100 % wählen.</span>";d.appendChild(c);}
+  pa.appendChild(d);
+}
+/* Ausschnitt des Rasters mit Symbolen, Koordinaten und Plattengrenzen (Rand = 1 Feld) */
+function regionCanvas(x0,y0,w,h){
+  const cell=40,m=cell,bw=+$("bw").value,bh=+$("bh").value;
+  const cv=document.createElement("canvas");cv.width=w*cell+m*2;cv.height=h*cell+m*2;
+  const c=cv.getContext("2d");c.fillStyle="#fff";c.fillRect(0,0,cv.width,cv.height);
+  c.textAlign="center";c.textBaseline="middle";
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const v=state.grid[(y0+y)*state.gw+x0+x],X=m+x*cell,Y=m+y*cell;
+    if(v===-2){c.fillStyle="#e6e6e6";c.fillRect(X,Y,cell,cell);continue;}
+    if(v<0)continue;
+    const col=state.colors[v];c.fillStyle=col.hex;c.fillRect(X,Y,cell,cell);
+    c.fillStyle=lum(col.rgb)>140?"#000":"#fff";c.font="600 22px system-ui";
+    c.fillText(SYMBOLS[v%SYMBOLS.length],X+cell/2,Y+cell/2+1);
+  }
+  const lines=(test,width,color)=>{
+    c.strokeStyle=color;c.lineWidth=width;c.beginPath();
+    for(let x=0;x<=w;x++)if(test(x0+x,x===0||x===w,bw)){c.moveTo(m+x*cell,m);c.lineTo(m+x*cell,m+h*cell);}
+    for(let y=0;y<=h;y++)if(test(y0+y,y===0||y===h,bh)){c.moveTo(m,m+y*cell);c.lineTo(m+w*cell,m+y*cell);}
+    c.stroke();
+  };
+  lines(()=>true,1,"rgba(0,0,0,.3)");
+  lines(g=>g%5===0,2,"rgba(0,0,0,.65)");
+  lines((g,edge,size)=>edge||g%size===0,4,"#d6457a");
+  c.fillStyle="#444";c.font="14px system-ui";
+  for(let x=0;x<w;x++)c.fillText(x0+x+1,m+x*cell+cell/2,m/2);
+  for(let y=0;y<h;y++)c.fillText(y0+y+1,m/2,m+y*cell+cell/2);
+  return cv;
+}
+
+/* ====================================================================
+   Bedienelemente verdrahten
+   ==================================================================== */
+function updateLabels(){
+  $("maxColorsV").textContent=$("maxColors").value;
+  $("bgTolV").textContent=$("bgTol").value;
+  $("brightV").textContent=$("bright").value;
+  $("contrastV").textContent=$("contrast").value;
+  $("satV").textContent=$("sat").value;
+  $("bgTolWrap").style.display=$("removeBg").checked?"block":"none";
+}
+$("system").onchange=()=>{onSystemChange();schedule();};
+$("board").onchange=()=>{applyBoardPreset();schedule();};
+$("pitch").addEventListener("input",()=>{applyCustomPitch();if(state.grid)updateStats();});
+$("palette").onchange=()=>{buildPaletteGrid();schedule();};
+["bw","bh"].forEach(id=>$(id).addEventListener("input",()=>{$("board").value=curBoard().shape==="round"?$("board").value:"custom";schedule();}));
+["nx","ny","fit","maxColors","dither","removeBg","bgTol","bright","contrast","sat"].forEach(id=>$(id).addEventListener("input",schedule));
+["view","showGrid","showBoards","showOrig"].forEach(id=>$(id).addEventListener("input",render));
+$("resetAdj").onclick=()=>{["bright","contrast","sat"].forEach(id=>$(id).value=0);schedule();};
+$("allOn").onclick=()=>{state.disabled[$("palette").value]=new Set();buildPaletteGrid();schedule();};
+$("allOff").onclick=()=>{state.disabled[$("palette").value]=new Set(PALETTES[$("palette").value].colors.map(c=>c[0]));buildPaletteGrid();schedule();};
+$("autoBoards").onclick=()=>{
+  if(!state.img)return notify("Bitte zuerst ein Bild hochladen.");
+  const bw=+$("bw").value,bh=+$("bh").value,r=(state.img.naturalWidth||state.img.width)/(state.img.naturalHeight||state.img.height);
+  const total=Math.max(1,(+$("nx").value)*(+$("ny").value));
+  // gleiche Plattenanzahl, Verhältnis ans Bild anpassen
+  let best=[1,1],bd=1e9;
+  for(let nx=1;nx<=total;nx++)for(let ny=1;ny<=total;ny++){
+    if(nx*ny<Math.max(1,total-1)||nx*ny>total+1)continue;
+    const d=Math.abs(Math.log((nx*bw)/(ny*bh)/r));
+    if(d<bd-1e-9){bd=d;best=[nx,ny];}
+  }
+  $("nx").value=best[0];$("ny").value=best[1];schedule();
+};
+
+/* ====================================================================
+   Motiv-Bibliothek
+   Jedes Zeichen = ein Pixel/eine Perle, "." = keine Perle
+   ==================================================================== */
+const MK={
+  K:["#1E1E1E","Schwarz"],W:["#F0F0F0","Weiß"],R:["#C8262F","Rot"],r:["#9A1F2A","Dunkelrot"],
+  P:["#EBA0BE","Rosa"],p:["#E0306C","Pink"],O:["#EE7A1F","Orange"],Y:["#F5D300","Gelb"],
+  y:["#F7E77C","Hellgelb"],G:["#1F8A47","Grün"],g:["#5DBB4A","Hellgrün"],D:["#24473A","Dunkelgrün"],
+  B:["#2A4E9F","Blau"],b:["#3D8AD0","Hellblau"],c:["#8FB8E6","Pastellblau"],T:["#4AA3B8","Türkis"],
+  V:["#6C3E8E","Lila"],v:["#A98BC8","Lavendel"],N:["#6B4231","Braun"],n:["#A8693A","Hellbraun"],
+  S:["#E8A68A","Hautfarbe"],E:["#D9B98F","Beige"],A:["#8C8C8C","Grau"],a:["#B9B9B9","Hellgrau"],
+  d:["#4A4A4A","Dunkelgrau"],C:["#F0E2BE","Creme"]
+};
+const RAINBOW=["R","O","Y","g","b","V"];
+
+const M=(cat,name,art)=>({cat,name,rows:art.trim().split("\n").map(s=>s.trim())});
+const MOTIFS=[
+// ---------- Liebe & Symbole ----------
+M("Symbole","Herz",`
+..KKK...KKK..
+.KRRRK.KRRRK.
+KRRWRRKRRRRRK
+KRWRRRRRRRRRK
+KRRRRRRRRRRRK
+.KRRRRRRRRRK.
+..KRRRRRRRK..
+...KRRRRRK...
+....KRRRK....
+.....KRK.....
+......K......`),
+M("Symbole","Herz rosa",`
+..KKK...KKK..
+.KPPPK.KPPPK.
+KPPWPPKPPPPPK
+KPWPPPPPPPPPK
+KPPPPPPPPPPPK
+.KPPPPPPPPPK.
+..KPPPPPPPK..
+...KPPPPPK...
+....KPPPK....
+.....KPK.....
+......K......`),
+M("Symbole","Regenbogen-Herz",`
+..KKK...KKK..
+.KRRRK.KRRRK.
+KRRRRRKRRRRRK
+KOOOOOOOOOOOK
+KYYYYYYYYYYYK
+.KgggggggggK.
+..KbbbbbbbK..
+...KbbbbbK...
+....KVVVK....
+.....KVK.....
+......K......`),
+M("Symbole","Stern",`
+......K......
+.....KYK.....
+.....KYK.....
+....KYYYK....
+KKKKKYYYKKKKK
+.KYYYYYYYYYK.
+..KYYYYYYYK..
+...KYYYYYK...
+..KYYYKYYYK..
+..KYYK.KYYK..
+.KYK.....KYK.
+.KK.......KK.`),
+M("Symbole","Smiley",`
+...KKKKKK...
+..KYYYYYYK..
+.KYYYYYYYYK.
+KYYKYYYYKYYK
+KYYKYYYYKYYK
+KYYYYYYYYYYK
+KYKYYYYYYKYK
+KYYKYYYYKYYK
+.KYYKKKKYYK.
+..KYYYYYYK..
+...KKKKKK...`),
+M("Symbole","Zwinker-Smiley",`
+...KKKKKK...
+..KYYYYYYK..
+.KYYYYYYYYK.
+KYYKYYYYYYYK
+KYYKYYYKKKYK
+KYYYYYYYYYYK
+KYKYYYYYYKYK
+KYYKYYYYKYYK
+.KYYKKKKYYK.
+..KYYYYYYK..
+...KKKKKK...`),
+M("Symbole","Blitz",`
+...KKKKK
+...KYYYK
+..KYYYK.
+..KYYK..
+.KYYYKKK
+.KYYYYYK
+KKKKYYK.
+...KYYK.
+..KYYK..
+..KYK...
+.KYK....
+.KK.....`),
+M("Symbole","Krone",`
+K.....K.....K
+KK...KYK...KK
+KYK.KYYYK.KYK
+KYYKYYYYYKYYK
+KYYYYYYYYYYYK
+KYRYYYBYYYRYK
+KYYYYYYYYYYYK
+KKKKKKKKKKKKK`),
+M("Symbole","Diamant",`
+..KKKKKKK..
+.KcWcbcWcK.
+KcccbbbcccK
+KKKKKKKKKKK
+.KbcccccbK.
+..KbcccbK..
+...KbcbK...
+....KbK....
+.....K.....`),
+M("Symbole","Musiknote",`
+...KKKKKK
+...KKKKKK
+...K....K
+...K....K
+...K....K
+...K....K
+.KKK..KKK
+KKKK.KKKK
+KKKK.KKKK
+.KK...KK.`),
+M("Symbole","Fußball",`
+...KKKKK...
+.KKWWWWWKK.
+.KWWKKKWWK.
+KWWKKKKKWWK
+KKWWKKKWWKK
+KKKWWWWWKKK
+KWWWWKWWWWK
+KWWWKKKWWWK
+.KWWKKKWWK.
+.KKWWWWWKK.
+...KKKKK...`),
+M("Symbole","Pfeil",`
+.....K.....
+....KRK....
+...KRRRK...
+..KRRRRRK..
+.KRRRRRRRK.
+KKKKRRRKKKK
+...KRRRK...
+...KRRRK...
+...KRRRK...
+...KKKKK...`),
+// ---------- Tiere ----------
+M("Tiere","Katze",`
+.K.........K.
+KOK.......KOK
+KOOKKKKKKKOOK
+KOOOOOOOOOOOK
+KOOKKOOOKKOOK
+KOOKKOOOKKOOK
+KOOOOOOOOOOOK
+KWWOOOPOOOWWK
+KOWWOKOKOWWOK
+.KOOOOOOOOOK.
+..KKKKKKKKK..`),
+M("Tiere","Graue Katze",`
+.K.........K.
+KAK.......KAK
+KAPKKKKKKKPAK
+KAAAAAAAAAAAK
+KAAgKAAAgKAAK
+KAAKKAAAKKAAK
+KAAAAAAAAAAAK
+KWWAAAPAAAWWK
+KAWWAKAKAWWAK
+.KAAAAAAAAAK.
+..KKKKKKKKK..`),
+M("Tiere","Hund",`
+.KKK.....KKK.
+KNNNKKKKKNNNK
+KNNKnnnnnKNNK
+KNKnnnnnnnKNK
+KNKnKnnnKnKNK
+.KKnKnnnKnKK.
+..KnnnnnnnK..
+..KnnKKKnnK..
+..KnnnKnnnK..
+...KnnRnnK...
+....KKKKK....`),
+M("Tiere","Fisch",`
+....KKKKK.....
+..KKTTTTTKK.KK
+.KTTTTTTTTTKTK
+KTWKTTTTTTTTTK
+KTTTTTTTTTTTTK
+.KTTTTTTTTTKTK
+..KKTTTTTKK.KK
+....KKKKK.....`),
+M("Tiere","Goldfisch",`
+....KKKKK.....
+..KKOOOOOKK.KK
+.KOOYOOOOOOKOK
+KOWKOOYOOOOOOK
+KOOOOOOYOOOOOK
+.KOOOOOOOOOKOK
+..KKOOOOOKK.KK
+....KKKKK.....`),
+M("Tiere","Schmetterling",`
+...K.....K...
+....K...K....
+.KKK.K.K.KKK.
+KVVVK.K.KVVVK
+KVYVVKKKVVYVK
+KVVVVVKVVVVVK
+.KVVVVKVVVVK.
+..KKKKKKKKK..
+.KppppKppppK.
+KpYppKKKppYpK
+KppppK.KppppK
+.KKKK...KKKK.`),
+M("Tiere","Marienkäfer",`
+...K...K...
+....KKK....
+...KKKKK...
+..KRRKRRK..
+.KRKRKRKRK.
+.KRRRKRRRK.
+.KKRRKRRKK.
+.KRRRKRRRK.
+..KRKKKRK..
+...KKKKK...`),
+M("Tiere","Pinguin",`
+...KKKKK...
+..KKKKKKK..
+.KKWKKKWKK.
+.KKKKOKKKK.
+.KKWWOWWKK.
+KKWWWWWWWKK
+KKWWWWWWWKK
+KKWWWWWWWKK
+.KWWWWWWWK.
+.KKWWWWWKK.
+..KKKKKKK..
+..OO...OO..`),
+M("Tiere","Eule",`
+.K.......K.
+.KNK...KNK.
+.KNNKKKNNK.
+KNWWNNNWWNK
+KWKWNNNWKWK
+KNWWNONWWNK
+KNNNNONNNNK
+KNEENNNEENK
+KNEEEEEEENK
+.KNEEEEENK.
+..KKKKKKK..
+..O.O.O.O..`),
+M("Tiere","Schwein",`
+.KK.......KK.
+KPPK.....KPPK
+KPPPKKKKKPPPK
+KPPPPPPPPPPPK
+KPPKPPPPPKPPK
+KPPPPKKKPPPPK
+KPPPKpKpKPPPK
+KPPPPKKKPPPPK
+.KPPPPPPPPPK.
+..KKKKKKKKK..`),
+M("Tiere","Frosch",`
+..KKK...KKK..
+.KWWWK.KWWWK.
+.KWKWKKKWKWK.
+KgKKKgggKKKgK
+KgggggggggggK
+KgPgggggggPgK
+KggKKKKKKKggK
+.KgggggggggK.
+..KKKKKKKKK..`),
+M("Tiere","Hase",`
+.KK.....KK.
+KWPK...KPWK
+KWPK...KPWK
+KWPK...KPWK
+.KWK...KWK.
+.KWWKKKWWK.
+KWWWWWWWWWK
+KWKWWWWWKWK
+KWWWWPWWWWK
+KPWWKWKWWPK
+.KWWWWWWWK.
+..KKKKKKK..`),
+M("Tiere","Küken",`
+...KKKK....
+..KYYYYK...
+.KYYKYYK...
+KOOYYYYK...
+.KKYYYYKKK.
+..KYYYYYYYK
+.KYYYYYYYYK
+.KYYYyyyYYK
+.KYYYYYYYK.
+..KKKKKKK..
+....O..O...`),
+M("Tiere","Schildkröte",`
+....KKKKK......
+...KGgGgGK.....
+..KGgGGGgGK.KK.
+.KGGgGgGgGGKgK.
+KgKGGGgGGGKgggK
+.KKKKKKKKKKKgKK
+..KgK...KgK.KK.
+..KK.....KK....`),
+M("Tiere","Maus",`
+.KK.....KK.
+KAPK...KPAK
+KAPAKKKAPAK
+.KAAAAAAAK.
+.KAKAAAKAK.
+.KAAAAAAAK.
+..KAAPAAK..
+...KAAAK...
+....KKK....`),
+M("Tiere","Wal",`
+.......K.K......
+........K.......
+....KKKKKKK.....
+..KKBBBBBBBKK...
+.KBBBBBBBBBBBK.K
+KBBWKBBBBBBBBKKK
+KBBBBBBBBBBBBBBK
+KccBBBBBBBBBBBK.
+.KcccccccccBBK..
+..KKKKKKKKKKK...`),
+M("Tiere","Schnecke",`
+...KKKKK......
+..KnNnNnK.....
+.KnNKKKNnK..K.K
+.KnNKnKNnK..KK.
+.KnNnKKNnK.KSK.
+..KnNNNnKKKSSK.
+KKKKKKKKSSSSK..
+KSSSSSSSSSSK...
+.KKKKKKKKKK....`),
+// ---------- Natur ----------
+M("Natur","Blume",`
+....KKK....
+..KKPPPKK..
+.KPPKPKPPK.
+.KPKYYYKPK.
+KPPKYYYKPPK
+.KPKYYYKPK.
+.KPPKKKPPK.
+..KKPPPKK..
+....KGK....
+..KKKGK.KK.
+.KGGKGKKGK.
+..KKKGGGK..
+....KGK....`),
+M("Natur","Sonnenblume",`
+....KKK....
+..KKYYYKK..
+.KYYKYKYYK.
+.KYKNNNKYK.
+KYYKNNNKYYK
+.KYKNNNKYK.
+.KYYKKKYYK.
+..KKYYYKK..
+....KGK....
+..KKKGK.KK.
+.KGGKGKKGK.
+..KKKGGGK..
+....KGK....`),
+M("Natur","Sonne",`
+......O......
+..O...O...O..
+...O.....O...
+....KKKKK....
+...KYYYYYK...
+OO.KYKYKYK.OO
+...KYYYYYK...
+...KYKKKYK...
+....KKKKK....
+...O.....O...
+..O...O...O..
+......O......`),
+M("Natur","Wolke",`
+.....KKKK.....
+....KWWWWK....
+..KKWWWWWWKK..
+.KWWWWWWWWWWK.
+KWWWWWWWWWWWWK
+KWWWWWWWWWWWWK
+.KccWWWWWWccK.
+..KKKKKKKKKK..`),
+M("Natur","Regenwolke",`
+.....KKKK.....
+....KaaaaK....
+..KKaaaaaaKK..
+.KaaaaaaaaaaK.
+KaaaaaaaaaaaaK
+.KAAaaaaaaAAK.
+..KKKKKKKKKK..
+..b...b...b...
+....b...b...b.
+..b...b...b...`),
+M("Natur","Baum",`
+....KKK....
+...KGgGK...
+..KGGGgGK..
+.KGgGGGGGK.
+KGGGGgGGgGK
+KGgGGGGGGGK
+.KGGGgGGGK.
+KGGgGGGGgGK
+KGGGGGGGGGK
+.KKKKNKKKK.
+....KNK....
+....KNK....
+...KKNKK...`),
+M("Natur","Tanne",`
+.....K.....
+....KGK....
+...KGGGK...
+..KGGGGGK..
+...KGGGK...
+..KGGGGGK..
+.KGGGGGGGK.
+..KGGGGGK..
+.KGGGGGGGK.
+KGGGGGGGGGK
+KKKKKNKKKKK
+....KNK....
+....KKK....`),
+M("Natur","Fliegenpilz",`
+...KKKKK...
+..KRRWRRK..
+.KRWRRRWRK.
+KRRRRRRRRRK
+KRWRRWRRRWK
+KKKKKKKKKKK
+...KWWWK...
+...KWWWK...
+...KWWWK...
+...KKKKK...`),
+M("Natur","Kaktus",`
+....KKK....
+...KGgGK...
+...KGgGK...
+.K.KGgGK...
+KGKKGgGK.K.
+KGGKGgGKKGK
+KGGGGgGKGGK
+.KKKGgGGGGK
+...KGgGKKK.
+...KGgGK...
+.KKKKKKKKK.
+.KOOOOOOOK.
+..KOOOOOK..
+..KKKKKKK..`),
+M("Natur","Mond",`
+....KKK...
+..KKyyK...
+.KyyyK....
+.KyyK.....
+KyyyK.....
+KyyyK.....
+KyyyK.....
+KyyyyK....
+.KyyyyKKKK
+.KKyyyyyyK
+...KKKKKK.`),
+M("Natur","Schneeflocke",`
+......b......
+...b..b..b...
+....b.b.b....
+.....bbb.....
+.b...bbb...b.
+..b...b...b..
+bbbbbbcbbbbbb
+..b...b...b..
+.b...bbb...b.
+.....bbb.....
+....b.b.b....
+...b..b..b...
+......b......`),
+M("Natur","Blatt",`
+.......KKKK
+.....KKgggK
+...KKgggGgK
+..KgggggGgK
+.KgggggGggK
+.KggggGgggK
+KgggGGgggK.
+KggGgggKK..
+KgGKKKK....
+KGK........
+K..........`),
+M("Natur","Tulpe",`
+.K.KK.KK.K.
+KRKRRKRRKRK
+KRRRRRRRRRK
+KRRRRRRRRRK
+.KRRRRRRRK.
+..KKRRRKK..
+....KGK....
+.KK.KGK....
+KGGKKGK....
+.KGGGGK....
+..KKKGK....
+....KGK....`),
+// ---------- Essen ----------
+M("Essen","Apfel",`
+.....KK....
+....KNK.KK.
+.....KNKGK.
+..KKKKNKK..
+.KRRRKKRRK.
+KRWRRRRRRRK
+KRWRRRRRRRK
+KRRRRRRRRRK
+KRRRRRRRRRK
+.KRRRRRRRK.
+..KRRKRRK..
+...KK.KK...`),
+M("Essen","Erdbeere",`
+...KK.KK...
+..KGGKGGK..
+.KGGGGGGGK.
+KRRKGGGKRRK
+KRYRRRRRYRK
+KRRRRYRRRRK
+KRYRRRRRYRK
+.KRRRYRRRK.
+.KRYRRRYRK.
+..KRRRRRK..
+...KRYRK...
+....KKK....`),
+M("Essen","Kirschen",`
+.......KK..
+......KGGK.
+.....KGK...
+....KG.K...
+...KG...K..
+..KKK..KKK.
+.KRRRK.KRRK
+KRWRRRKRWRK
+KRRRRRKRRRK
+KRRRRK.KRRK
+.KKKK...KK.`),
+M("Essen","Eis",`
+...KKKKK...
+..KPPPPPK..
+.KPPWPPPPK.
+.KPPPPPPPK.
+.KKKKKKKKK.
+..KEnEnEK..
+..KnEnEnK..
+...KEnEK...
+...KnEnK...
+....KEK....
+....KnK....
+.....K.....`),
+M("Essen","Donut",`
+...KKKKKK...
+..KPPPPPPK..
+.KPpPPPPYPK.
+KPPPPKKPPPPK
+KPYPK..KPPpK
+KPPPK..KPPPK
+KnPPPKKPPPnK
+KnnPPPPPPnnK
+.KnnnnnnnnK.
+..KKKKKKKK..`),
+M("Essen","Cupcake",`
+.....K.....
+....KRK....
+...KKKKK...
+..KPPPPPK..
+.KPPWPPPPK.
+KPPPPPPPPPK
+KPPPPPPPPPK
+KKKKKKKKKKK
+.KbBbBbBbK.
+.KbBbBbBbK.
+..KbBbBbK..
+..KKKKKKK..`),
+M("Essen","Melone",`
+KKKKKKKKKKKKK
+KRRKRRRRRKRRK
+.KRRRRKRRRRK.
+.KRRRRRRRRRK.
+..KRRKRRKRK..
+..KWRRRRRWK..
+...KWWWWWK...
+....KGGGK....
+.....KKK.....`),
+M("Essen","Birne",`
+.....KK..
+.....KNK.
+....KKKGK
+...KgggK.
+..KgggK..
+..KgWgK..
+.KggggggK
+KgWgggggK
+KgggggggK
+KgggggggK
+.KgggggK.
+..KKKKK..`),
+M("Essen","Karotte",`
+....KK.KK
+...KGKKGK
+....KGGK.
+...KOOK..
+..KOOOK..
+..KOKOK..
+.KOOOK...
+.KOKOK...
+KOOOK....
+KOOK.....
+KKK......`),
+M("Essen","Pizza",`
+KKKKKKKKKKKKK
+KnnnnnnnnnnnK
+.KYYRRYYYYYK.
+.KYRRRYYRRYK.
+..KYRYYYRRK..
+..KYYYYGYYK..
+...KYRRYYK...
+...KYRRYK....
+....KYYYK....
+....KYYK.....
+.....KK......`),
+// ---------- Feiertage ----------
+M("Feiertage","Weihnachtsbaum",`
+......Y......
+.....YYY.....
+......K......
+.....KGK.....
+....KGGRK....
+...KGGGGGK...
+....KGGGK....
+...KGYGGGK...
+..KGGGGGRGK..
+...KGGGGGK...
+..KGRGGGGGK..
+.KGGGGGBGGGK.
+KGGGGGGGGGGGK
+.KKKKKNKKKKK.
+.....KNK.....
+....KKKKK....`),
+M("Feiertage","Schneemann",`
+...KKKKK...
+...KKKKK...
+..KKKKKKK..
+...KWWWK...
+..KWKWKWK..
+..KWWOOWK..
+..KWKKKWK..
+...KWWWK...
+..KRRRRRK..
+.KWWWKWWWK.
+KWWWWWWWWWK
+KWWWWKWWWWK
+KWWWWWWWWWK
+.KWWWKWWWK.
+..KKKKKKK..`),
+M("Feiertage","Geschenk",`
+..KK...KK..
+.KRRK.KRRK.
+..KKRKRKK..
+KKKKKRKKKKK
+KBBBBRBBBBK
+KKKKKRKKKKK
+.KBBBRBBBK.
+.KBBBRBBBK.
+.KBBBRBBBK.
+.KBBBRBBBK.
+.KKKKKKKKK.`),
+M("Feiertage","Zuckerstange",`
+..KKKKK.
+.KRWWRRK
+KWWKKKWK
+KRK..KRK
+KKK..KWK
+.....KRK
+.....KWK
+.....KRK
+.....KWK
+.....KRK
+.....KWK
+.....KKK`),
+M("Feiertage","Glocke",`
+.....K.....
+....KYK....
+...KYYYK...
+..KYWYYYK..
+..KYWYYYK..
+..KYYYYYK..
+.KYYYYYYYK.
+.KYYYYYYYK.
+KYYYYYYYYYK
+KKKKKKKKKKK
+....KYK....
+.....K.....`),
+M("Feiertage","Kürbis",`
+......KK.....
+......KG.....
+..KKKKKKKKK..
+.KOOOOKOOOOK.
+KOOKKOOOKKOOK
+KOOKKOOOKKOOK
+KOOOOOKOOOOOK
+KOKOOOOOOOKOK
+KOOKKKKKKKOOK
+.KOOKOOKOOOK.
+..KKKKKKKKK..`),
+M("Feiertage","Geist",`
+...KKKKK...
+..KWWWWWK..
+.KWWWWWWWK.
+KWWKKWKKWWK
+KWWKKWKKWWK
+KWWWWWWWWWK
+KWWWKKKWWWK
+KWWWKKKWWWK
+KWWWWWWWWWK
+KWWWWWWWWWK
+KWKWWKWWKWK
+KK.KK.KK.KK`),
+M("Feiertage","Fledermaus",`
+K.....K.K.....K
+KK...KKKKK...KK
+KdK.KKWKWKK.KdK
+KddKKKKKKKKKddK
+KdddKKKKKKKdddK
+.KddKdKKKdKddK.
+..KK.K.K.K.KK..`),
+M("Feiertage","Osterei",`
+...KKK...
+..KPPPK..
+.KPPPPPK.
+.KYYYYYK.
+KYRYRYRYK
+KYYYYYYYK
+KbbbbbbbK
+KbWbWbWbK
+KbbbbbbbK
+.KgggggK.
+..KgggK..
+...KKK...`),
+M("Feiertage","Osterhase",`
+..KK...KK..
+.KaPK.KPaK.
+.KaPK.KPaK.
+.KaPKKKPaK.
+..KaaaaaK..
+.KaKaaaKaK.
+.KaaaPaaaK.
+.KaaKaKaaK.
+..KaaaaaK..
+.KaaaaaaaK.
+KaaaWWWaaaK
+KaaWWWWWaaK
+.KKKKKKKKK.`),
+M("Feiertage","Kerze",`
+....O....
+...OYO...
+...OYO...
+....K....
+..KKKKK..
+..KRRWK..
+..KRRWK..
+..KRRWK..
+..KRRWK..
+..KRRWK..
+.KKKKKKK.
+KGGGGGGGK
+.KKKKKKK.`),
+// ---------- Fahrzeuge & Dinge ----------
+M("Dinge","Haus",`
+......K......
+.....KRK.....
+....KRRRK....
+...KRRRRRK...
+..KRRRRRRRK..
+.KRRRRRRRRRK.
+KKKKKKKKKKKKK
+.KEEEEEEEEEK.
+.KEKKKEEEEEK.
+.KEKcKEKKKEK.
+.KEKKKEKNKEK.
+.KEEEEEKNKEK.
+.KKKKKKKKKKK.`),
+M("Dinge","Auto",`
+....KKKKKK.....
+...KcccKccK....
+..KccccKcccKK..
+.KRRRRRRRRRRRK.
+KYRRRRRRRRRRRRK
+KRRRRRRRRRRRRRK
+KRRKKKRRRRKKKRK
+.KKKaKKKKKKaKK.
+...KKK....KKK..`),
+M("Dinge","Rakete",`
+....K....
+...KRK...
+..KRRRK..
+..KWWWK..
+..KWbWK..
+..KWWWK..
+..KWWWK..
+.KKWWWKK.
+KRKWWWKRK
+KRKKKKKRK
+KK.KOK.KK
+...KYK...
+....O....`),
+M("Dinge","Ballon",`
+..KKKKK..
+.KRRRRRK.
+KRWRRRRRK
+KRWRRRRRK
+KRRRRRRRK
+KRRRRRRRK
+.KRRRRRK.
+..KRRRK..
+...KRK...
+....K....
+....K....
+.....K...
+....K....`),
+M("Dinge","Boot",`
+......K.......
+......KR......
+......KRR.....
+......KRRR....
+......KRRRR...
+......KWWWWW..
+......K.......
+KKKKKKKKKKKKKK
+KNNNNNNNNNNNNK
+.KnnnnnnnnnnK.
+..KKKKKKKKKK..
+.bb..bb..bb..b`),
+M("Dinge","Flugzeug",`
+......KK.......
+......KcK......
+......KcK......
+.....KKcKK.....
+KKKKKccccKKKKK.
+KccccccccccccK.
+.KKKKKccKKKKK..
+......KcK......
+.....KKcKK.....
+....KccccccK...
+.....KKKKKK....`),
+M("Dinge","Schlüssel",`
+.KKKK..........
+KYYYYK.........
+KYKKYKKKKKKKKKK
+KYKKYYYYYYYYYYK
+KYYYYKKKKKKYKYK
+.KKKK.....KKKK.`),
+M("Dinge","Brille",`
+KKKKKK.KKKKKK
+KccccKKKccccK
+KcWccK.KcWccK
+KccccK.KccccK
+.KKKK...KKKK.`),
+M("Dinge","Schwert",`
+..........KK
+.........KaK
+........KaK.
+.......KaK..
+......KaK...
+.....KaK....
+.K..KaK.....
+.KKKaK......
+..KNK.......
+.KNKKK......
+KYK..K......
+KK..........`),
+M("Dinge","Pokal",`
+KKKKKKKKKKK
+KYYYYYYYYYK
+YKYWYYYYYKY
+YKYWYYYYYKY
+.KYYYYYYYK.
+..KYYYYYK..
+...KKYKK...
+....KYK....
+...KYYYK...
+..KKKKKKK..`),
+M("Dinge","Controller",`
+..KKKKKKKKKKK..
+.KaaaaaaaaaaaK.
+KaaKaaaaaaaRaaK
+KaKKKaaaaaBaGaK
+KaaKaaaaaaaYaaK
+KaaaaaKKKaaaaaK
+.KaaaK...KaaaK.
+..KKK.....KKK..`),
+M("Dinge","Anker",`
+.....KKK.....
+....KK.KK....
+.....KKK.....
+...KKKKKKK...
+......K......
+......K......
+K.....K.....K
+KK....K....KK
+.KK...K...KK.
+..KKK.K.KKK..
+....KKKKK....`)
+];
+
+/* ---------- 5×7-Pixelschrift für Buchstaben, Zahlen & Text ---------- */
+const FONT={
+A:[14,17,17,31,17,17,17],B:[30,17,17,30,17,17,30],C:[14,17,16,16,16,17,14],D:[28,18,17,17,17,18,28],
+E:[31,16,16,30,16,16,31],F:[31,16,16,30,16,16,16],G:[14,17,16,23,17,17,15],H:[17,17,17,31,17,17,17],
+I:[14,4,4,4,4,4,14],J:[7,2,2,2,2,18,12],K:[17,18,20,24,20,18,17],L:[16,16,16,16,16,16,31],
+M:[17,27,21,21,17,17,17],N:[17,17,25,21,19,17,17],O:[14,17,17,17,17,17,14],P:[30,17,17,30,16,16,16],
+Q:[14,17,17,17,21,18,13],R:[30,17,17,30,20,18,17],S:[15,16,16,14,1,1,30],T:[31,4,4,4,4,4,4],
+U:[17,17,17,17,17,17,14],V:[17,17,17,17,17,10,4],W:[17,17,17,21,21,21,10],X:[17,17,10,4,10,17,17],
+Y:[17,17,10,4,4,4,4],Z:[31,1,2,4,8,16,31],
+"Ä":[10,0,14,17,31,17,17],"Ö":[10,0,14,17,17,17,14],"Ü":[10,0,17,17,17,17,14],
+"0":[14,17,19,21,25,17,14],"1":[4,12,4,4,4,4,14],"2":[14,17,1,2,4,8,31],"3":[31,2,4,2,1,17,14],
+"4":[2,6,10,18,31,2,2],"5":[31,16,30,1,1,17,14],"6":[6,8,16,30,17,17,14],"7":[31,1,2,4,8,8,8],
+"8":[14,17,17,14,17,17,14],"9":[14,17,17,15,1,2,12],
+"!":[4,4,4,4,4,0,4],"?":[14,17,1,2,4,0,4],".":[0,0,0,0,0,0,4],"-":[0,0,0,31,0,0,0],
+"+":[0,4,4,31,4,4,0],"♥":[0,10,31,31,14,4,0]
+};
+/* Text -> Pixelzeilen. color: Farbschlüssel oder "rainbow" */
+function textToRows(text,color,scale,outline){
+  const lines=text.toUpperCase().replace(/<3/g,"♥").replace(/ß/g,"SS").split("\n").map(l=>l.trimEnd()).filter((l,i,a)=>l||a.length===1);
+  if(!lines.length||!lines.some(l=>l.trim()))return null;
+  const lineRows=[];let ci=0;
+  lines.forEach(line=>{
+    const rows=Array.from({length:7},()=>[]);
+    [...line].forEach((ch,k)=>{
+      if(k>0)rows.forEach(r=>r.push("."));
+      const g=FONT[ch];
+      if(!g){rows.forEach(r=>r.push(".",".","."));return;}
+      const col=color==="rainbow"?RAINBOW[ci++%RAINBOW.length]:color;
+      for(let y=0;y<7;y++)for(let x=4;x>=0;x--)rows[y].push((g[y]>>x)&1?col:".");
+    });
+    lineRows.push(rows);
+  });
+  // Zeilen zentriert untereinander, 2 Pixel Abstand
+  const w=Math.max(...lineRows.map(r=>r[0].length));
+  let rows=[];
+  lineRows.forEach((lr,i)=>{
+    if(i>0)rows.push([],[]);
+    const pad=Math.floor((w-lr[0].length)/2);
+    lr.forEach(r=>rows.push(Array(pad).fill(".").concat(r)));
+  });
+  rows=rows.map(r=>r.concat(Array(w-r.length).fill(".")));
+  // vergrößern
+  if(scale>1)rows=rows.flatMap(r=>{const rr=r.flatMap(c=>Array(scale).fill(c));return Array(scale).fill(rr);});
+  if(outline)rows=addOutline(rows,color==="K"?"a":"K");
+  return rows.map(r=>r.join(""));
+}
+function addOutline(rows,oc){
+  const h=rows.length+2,w=rows[0].length+2;
+  const g=Array.from({length:h},(_,y)=>Array.from({length:w},(_,x)=>(rows[y-1]&&rows[y-1][x-1])||"."));
+  const out=g.map(r=>r.slice());
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    if(g[y][x]!==".")continue;
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+      const v=g[y+dy]&&g[y+dy][x+dx];
+      if(v&&v!=="."){out[y][x]=oc;dy=dx=2;}
+    }
+  }
+  return out;
+}
+
+/* ---------- Muster, die sich an die Steckplatte anpassen ---------- */
+const PATTERNS=[
+  {name:"Regenbogen",gen:(w,h)=>{
+    const cx=(w-1)/2,cy=h-1,R=Math.min(w/2,h)-.2,t=Math.max(1,R/9);
+    return grid(w,h,(x,y)=>{const d=Math.hypot(x-cx,y-cy),k=Math.floor((R-d)/t);return k>=0&&k<6?RAINBOW[k]:".";});
+  }},
+  {name:"Zielscheibe",gen:(w,h)=>{
+    const cx=(w-1)/2,cy=(h-1)/2,R=Math.min(w,h)/2;
+    return grid(w,h,(x,y)=>{const d=Math.hypot(x-cx,y-cy);return d>R?".":["R","W"][Math.floor(d/2)%2];});
+  }},
+  {name:"Regenbogen-Kreise",gen:(w,h)=>{
+    const cx=(w-1)/2,cy=(h-1)/2,R=Math.min(w,h)/2;
+    return grid(w,h,(x,y)=>{const d=Math.hypot(x-cx,y-cy);return d>R?".":RAINBOW[Math.floor(d/2)%6];});
+  }},
+  {name:"Schachbrett",gen:(w,h)=>{
+    const s=Math.max(1,Math.round(Math.min(w,h)/8));
+    return grid(w,h,(x,y)=>((Math.floor(x/s)+Math.floor(y/s))%2)?"K":"W");
+  }},
+  {name:"Karomuster",gen:(w,h)=>grid(w,h,(x,y)=>{const a=Math.floor(x/3)%2,b=Math.floor(y/3)%2;return a&&b?"r":a||b?"R":"W";})},
+  {name:"Diagonale Streifen",gen:(w,h)=>grid(w,h,(x,y)=>RAINBOW[Math.floor((x+y)/3)%6])},
+  {name:"Querstreifen",gen:(w,h)=>grid(w,h,(x,y)=>RAINBOW[Math.floor(y/Math.max(1,Math.round(h/6)))%6])},
+  {name:"Zickzack",gen:(w,h)=>grid(w,h,(x,y)=>{const z=Math.abs((x%8)-4);return ["b","W","T","W"][Math.floor((y+z)/2)%4];})},
+  {name:"Punkte",gen:(w,h)=>grid(w,h,(x,y)=>(x%4===1&&y%4===1)||(x%4===3&&y%4===3)?"p":"P")},
+  {name:"Rahmen (Untersetzer)",gen:(w,h)=>grid(w,h,(x,y)=>{const e=Math.min(x,y,w-1-x,h-1-y);return e===0?"K":e===1?((x+y)%2?"R":"W"):e===2?"K":".";})},
+  {name:"Fliesen-Herzen",gen:(w,h)=>{
+    const H=[".K.K.","KRKRK","KRRRK",".KRK.","..K.."];
+    return grid(w,h,(x,y)=>{const c=H[y%6]&&H[y%6][x%6];return c||"W";});
+  }},
+  {name:"Farbverlauf",gen:(w,h)=>{const C=["V","B","b","T","g","Y","O","R"];return grid(w,h,(x,y)=>C[Math.min(C.length-1,Math.floor(y/h*C.length))]);}}
+];
+function grid(w,h,f){const rows=[];for(let y=0;y<h;y++){let s="";for(let x=0;x<w;x++)s+=f(x,y);rows.push(s);}return rows;}
+
+/* ---------- Pixelzeilen -> Canvas ---------- */
+function rowsToCanvas(rows){
+  const h=rows.length,w=Math.max(...rows.map(r=>[...r].length));
+  const cv=document.createElement("canvas");cv.width=w;cv.height=h;
+  const c=cv.getContext("2d"),img=c.createImageData(w,h);
+  rows.forEach((row,y)=>[...row].forEach((ch,x)=>{
+    const m=MK[ch];if(!m)return;const rgb=hexToRgb(m[0]),i=(y*w+x)*4;
+    img.data[i]=rgb[0];img.data[i+1]=rgb[1];img.data[i+2]=rgb[2];img.data[i+3]=255;
+  }));
+  c.putImageData(img,0,0);return cv;
+}
+
+/* ---------- Motiv übernehmen ---------- */
+function useMotif(m){
+  state.motif=m;state.pixelArt=true;state.removed.clear();
+  state.img=m.gen?rowsToCanvas(m.gen(+$("bw").value*+$("nx").value,+$("bh").value*+$("ny").value)):rowsToCanvas(m.rows);
+  state.imgName=m.name.toLowerCase().replace(/[^a-z0-9äöüß]+/g,"_").replace(/^_|_$/g,"")||"motiv";
+  $("fit").value="contain";
+  $("removeBg").checked=false;
+  $("motifScaleWrap").style.display=m.gen?"none":"block";
+  const thumb=m.gen?rowsToCanvas(m.gen(20,20)):state.img;
+  const info=m.gen?"Muster – passt sich an die Steckplatte an":`${state.img.width} × ${state.img.height} Perlen`;
+  $("dropInner").innerHTML=`<img class="px" src="${thumb.toDataURL()}"><small><b></b><br>${info}<br>Klicken, um ein eigenes Bild zu laden</small>`;
+  $("dropInner").querySelector("b").textContent=m.name;
+  closeMotifs();state.zoom=0;updateLabels();schedule();
+}
+
+/* ---------- Galerie ---------- */
+const LETTERS=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ0123456789"].map((ch,i)=>({
+  cat:"Buchstaben & Zahlen",name:/\d/.test(ch)?`Zahl ${ch}`:`Buchstabe ${ch}`,
+  rows:textToRows(ch,RAINBOW[i%RAINBOW.length],2,true)
+}));
+const ALL_MOTIFS=MOTIFS.concat(PATTERNS.map(p=>({...p,cat:"Muster"})),LETTERS);
+const TABS=["Alle","Symbole","Tiere","Natur","Essen","Feiertage","Dinge","Muster","Buchstaben & Zahlen","Eigener Text"];
+let motifTab="Alle";
+
+function openMotifs(){
+  $("motifModal").hidden=false;
+  if(!$("motifTabs").children.length){
+    TABS.forEach(t=>{
+      const b=document.createElement("button");b.className="btn";b.textContent=t;b.dataset.tab=t;
+      b.onclick=()=>{motifTab=t;$("motifSearch").value="";renderMotifGrid();};
+      $("motifTabs").appendChild(b);
+    });
+    $("txtColor").innerHTML=`<option value="rainbow">Regenbogen</option>`+Object.entries(MK).map(([k,v])=>`<option value="${k}">${v[1]}</option>`).join("");
+    $("txtColor").value="rainbow";
+  }
+  renderMotifGrid();
+  $("motifSearch").focus();
+}
+function closeMotifs(){$("motifModal").hidden=true;}
+function thumbCanvas(m){
+  const cv=m.gen?rowsToCanvas(m.gen(20,20)):rowsToCanvas(m.rows);
+  const s=Math.max(1,Math.floor(72/Math.max(cv.width,cv.height)));
+  const out=document.createElement("canvas");out.width=cv.width*s;out.height=cv.height*s;
+  const c=out.getContext("2d");c.imageSmoothingEnabled=false;c.drawImage(cv,0,0,out.width,out.height);
+  return out;
+}
+function renderMotifGrid(){
+  [...$("motifTabs").children].forEach(b=>b.classList.toggle("active",b.dataset.tab===motifTab));
+  const q=$("motifSearch").value.trim().toLowerCase();
+  const isText=motifTab==="Eigener Text"&&!q;
+  $("textForm").hidden=!isText;
+  const g=$("motifGrid");g.innerHTML="";
+  if(isText){updateTextPreview();return;}
+  const list=q?ALL_MOTIFS.filter(m=>m.name.toLowerCase().includes(q)||m.cat.toLowerCase().includes(q))
+              :motifTab==="Alle"?ALL_MOTIFS:ALL_MOTIFS.filter(m=>m.cat===motifTab);
+  if(!list.length){g.innerHTML=`<div class="hint">Nichts gefunden.</div>`;return;}
+  let lastCat=null;
+  list.forEach(m=>{
+    if((motifTab==="Alle"||q)&&m.cat!==lastCat){
+      const h=document.createElement("div");h.className="mcat";h.textContent=m.cat;g.appendChild(h);lastCat=m.cat;
+    }
+    const card=document.createElement("button");card.className="mcard";card.type="button";
+    card.appendChild(thumbCanvas(m));
+    const s=document.createElement("span");s.textContent=m.name;card.appendChild(s);
+    card.onclick=()=>useMotif(m);
+    g.appendChild(card);
+  });
+}
+function currentTextRows(){
+  return textToRows($("txtInput").value,$("txtColor").value,+$("txtScale").value,$("txtOutline").checked);
+}
+function updateTextPreview(){
+  const rows=currentTextRows(),cv=$("txtPrev");
+  if(!rows){cv.width=1;cv.height=1;return;}
+  const src=rowsToCanvas(rows),s=Math.max(2,Math.min(10,Math.floor(420/src.width)));
+  cv.width=src.width*s;cv.height=src.height*s;
+  const c=cv.getContext("2d");c.imageSmoothingEnabled=false;c.drawImage(src,0,0,cv.width,cv.height);
+  $("txtUse").textContent=`Text übernehmen (${src.width} × ${src.height} Perlen)`;
+}
+$("openMotifs").onclick=openMotifs;
+$("motifClose").onclick=closeMotifs;
+$("motifModal").addEventListener("click",e=>{if(e.target===$("motifModal"))closeMotifs();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("motifModal").hidden)closeMotifs();});
+$("motifSearch").addEventListener("input",renderMotifGrid);
+["txtInput","txtColor","txtScale","txtOutline"].forEach(id=>$(id).addEventListener("input",updateTextPreview));
+$("txtUse").onclick=()=>{
+  const rows=currentTextRows();
+  if(!rows){notify("Bitte zuerst einen Text eingeben.");return;}
+  useMotif({cat:"Eigener Text",name:$("txtInput").value.trim().split("\n")[0]||"Text",rows});
+  $("motifScale").value="1";schedule();
+};
+$("motifScale").addEventListener("input",schedule);
+["paper","orient","printScale","pmargin","pOverview"].forEach(id=>$(id).addEventListener("input",updatePrintInfo));
+
+onSystemChange();
+updateLabels();
+</script>
+</body>
+</html>
